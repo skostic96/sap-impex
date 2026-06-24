@@ -1,0 +1,30 @@
+INSERT_UPDATE AttributeFieldConfig;code[unique=true];fieldHeader;indexedAttributeDescriptorsInternal;fieldFormatterBean;fieldExtractorBean;productType(code);productCategory(catalogVersion(catalog(id),version),code)
+;attr_additional_image;additional_image;Product.galleryImages[0].medias[0];acceleratorMediaFieldFormatter;attributeFieldExtractorStrategy;Product;
+;attr_product_image;product_image;Product.picture;acceleratorMediaFieldFormatter;attributeFieldExtractorStrategy;Product;
+;attr_age_group;age_group;Product.supercategories;acceleratorAgeGroupFormatter;attributeFieldExtractorStrategy;Product;
+
+INSERT_UPDATE SelfReferenceFieldConfig;code[unique=true];fieldHeader;fieldFormatterBean;fieldExtractorBean;productType(code);productCategory(catalogVersion(catalog(id),version),code)
+;self_product_url;product_url;acceleratorProductFieldFormatter;selfReferenceExtractorStrategy;Product;
+
+INSERT_UPDATE CSVExportFieldConfigRelation;source(code)[unique=true];target(code)[unique=true]
+;minimal;attr_product_image
+;minimal;self_product_url
+;ideal;attr_product_image
+;ideal;self_product_url
+;ideal;attr_age_group
+;ideal;attr_additional_image
+
+INSERT_UPDATE URLResolutionProperties;code[unique=true];encodingAttributes;subPath;secure;queryParameters;baseSite(uid)
+;secure_electr;;;true;;electronics
+
+UPDATE CSVExportCronJob;code[unique=true];urlResolutionProperties(code)[default="secure_electr"];
+;ProductsupApiExport;
+;ProductsupApiDeltaExport;
+;ProductsupApiIncrementalExport;
+
+# Separate import for testing purposes because default catalog has no products. If this fails however, it won't stop the 
+# secure_electr from being added, thats why it's split.
+UPDATE CSVExportCronJob;code[unique=true];catalogVersion(catalog(id),version);
+;ProductsupApiExport;apparelProductCatalog:Online;
+;ProductsupApiDeltaExport;apparelProductCatalog:Online;
+;ProductsupApiIncrementalExport;apparelProductCatalog:Online;
