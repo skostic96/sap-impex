@@ -223,6 +223,7 @@ UPDATE Product[batchmode=true];code[unique=true];supercategories(code,$contentCV
       //
       Factory.Token(';', 2, TOKEN_TYPE.SEMICOLON),
       Factory.Token('PROD', 2, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('-', 2, TOKEN_TYPE.IDENTIFIER),
       // TODO: Fix not parsing - characters
       Factory.Token('001', 2, TOKEN_TYPE.IDENTIFIER),
       Factory.Token(';', 2, TOKEN_TYPE.SEMICOLON),
@@ -230,6 +231,219 @@ UPDATE Product[batchmode=true];code[unique=true];supercategories(code,$contentCV
       Factory.Token(TOKEN.NEWLINE, 2, TOKEN_TYPE.NEWLINE),
     ]);
   });
+
+  it('stores unrecognized characters as identifier, flushes trailing content, when there is no EOF newline', () => {
+    const input = `
+$macro=stuff "quote" @????`; // This no EOF newline is critical to this test
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token(TOKEN.NEWLINE, 1, TOKEN_TYPE.NEWLINE),
+      Factory.Token('$macro', 2, TOKEN_TYPE.MACRO_REFERENCE),
+      Factory.Token('=', 2, TOKEN_TYPE.EQUALS),
+      Factory.Token('stuff', 2, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token(' ', 2, TOKEN_TYPE.WHITESPACE),
+      Factory.Token('"quote"', 2),
+      Factory.Token(' ', 2, TOKEN_TYPE.WHITESPACE),
+      Factory.Token('@????', 2, TOKEN_TYPE.IDENTIFIER),
+    ]);
+  });
+
+  it('stores implicitly stored characters as identifier, flushes training content, when there is EOF newline', () => {
+    const input = `
+$macro=stuff "quote" @????
+`; // This EOF newline is critical to this test
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token(TOKEN.NEWLINE, 1, TOKEN_TYPE.NEWLINE),
+      Factory.Token('$macro', 2, TOKEN_TYPE.MACRO_REFERENCE),
+      Factory.Token('=', 2, TOKEN_TYPE.EQUALS),
+      Factory.Token('stuff', 2, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token(' ', 2, TOKEN_TYPE.WHITESPACE),
+      Factory.Token('"quote"', 2),
+      Factory.Token(' ', 2, TOKEN_TYPE.WHITESPACE),
+      Factory.Token('@????', 2, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token(TOKEN.NEWLINE, 2, TOKEN_TYPE.NEWLINE),
+    ]);
+  });
+
+  it('flushes a lone $ as an identifier token', () => {
+    const input = `$ something`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('$', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token(' ', 1, TOKEN_TYPE.WHITESPACE),
+      Factory.Token('something', 1, TOKEN_TYPE.IDENTIFIER),
+    ]);
+  });
+
+  it('flushes a lone @ as an identifier token', () => {
+    const input = `@ something`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('@', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token(' ', 1, TOKEN_TYPE.WHITESPACE),
+      Factory.Token('something', 1, TOKEN_TYPE.IDENTIFIER),
+    ]);
+  });
+
+  it('flushes a lone & as an identifier token', () => {
+    const input = `& something`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('&', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token(' ', 1, TOKEN_TYPE.WHITESPACE),
+      Factory.Token('something', 1, TOKEN_TYPE.IDENTIFIER),
+    ]);
+  });
+
+  it('structural branch flushes pending content first', () => {
+    const input = `?;`;
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('?', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token(';', 1, TOKEN_TYPE.SEMICOLON),
+    ]);
+  });
+
+  it('macro branch flushes pending content first', () => {
+    const input = `?$macro`;
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('?', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('$macro', 1, TOKEN_TYPE.MACRO_REFERENCE),
+    ]);
+  });
+
+  it('comment branch flushes pending content first', () => {
+    const input = `?#a comment`;
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('?', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('#a comment', 1, TOKEN_TYPE.COMMENT),
+    ]);
+  });
+
+  it('script branch flushes pending content first', () => {
+    const input = `?#% script`;
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('?', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('#% script', 1, TOKEN_TYPE.SCRIPT),
+    ]);
+  });
+
+  it('quote branch flushes pending content first', () => {
+    const input = `?"quote"`;
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('?', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"quote"', 1),
+    ]);
+  });
+
+  it('identifier branch flushes pending content first', () => {
+    const input = `?abc`;
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('?', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('abc', 1, TOKEN_TYPE.IDENTIFIER),
+    ]);
+  });
+
+  it('whitespace branch flushes pending content first', () => {
+    const input = `? abc`;
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('?', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token(' ', 1, TOKEN_TYPE.WHITESPACE),
+      Factory.Token('abc', 1, TOKEN_TYPE.IDENTIFIER),
+    ]);
+  });
+
+  it('backspace - newline escaping branch flushes pending content first', () => {
+    const input = `?\\
+something`;
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('?', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('something', 2, TOKEN_TYPE.IDENTIFIER),
+    ]);
+  });
+
+  it('document reference "&" branch flushes pending content first', () => {
+    const input = `?&something`;
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('?', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('&something', 1, TOKEN_TYPE.DOCUMENT_REFERENCE),
+    ]);
+  });
+
+  it('special attribute "@" branch flushes pending content first', () => {
+    const input = `?@something`;
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('?', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('@something', 1, TOKEN_TYPE.SPECIAL_ATTRIBUTE),
+    ]);
+  });
+
+  it.each([
+    {
+      name: 'semicolon',
+      trigger: ';',
+      expected: [Factory.Token(';', 1, TOKEN_TYPE.SEMICOLON)],
+    },
+    {
+      name: 'macro reference',
+      trigger: '$macro',
+      expected: [Factory.Token('$macro', 1, TOKEN_TYPE.MACRO_REFERENCE)],
+    },
+    {
+      name: 'document reference',
+      trigger: '&ref',
+      expected: [Factory.Token('&ref', 1, TOKEN_TYPE.DOCUMENT_REFERENCE)],
+    },
+    {
+      name: 'special attribute',
+      trigger: '@attr',
+      expected: [Factory.Token('@attr', 1, TOKEN_TYPE.SPECIAL_ATTRIBUTE)],
+    },
+    {
+      name: 'lone $ (no-macro path)',
+      trigger: '$',
+      expected: [Factory.Token('$', 1, TOKEN_TYPE.IDENTIFIER)],
+    },
+    {
+      name: 'comment',
+      trigger: '#a comment',
+      expected: [Factory.Token('#a comment', 1, TOKEN_TYPE.COMMENT)],
+    },
+    {
+      name: 'script',
+      trigger: '#% script',
+      expected: [Factory.Token('#% script', 1, TOKEN_TYPE.SCRIPT)],
+    },
+    {
+      name: 'quote',
+      trigger: '"quote"',
+      expected: [Factory.Token('"quote"', 1)],
+    },
+    {
+      name: 'identifier',
+      trigger: 'abc',
+      expected: [Factory.Token('abc', 1, TOKEN_TYPE.IDENTIFIER)],
+    },
+    {
+      name: 'whitespace',
+      trigger: ' ',
+      expected: [Factory.Token(' ', 1, TOKEN_TYPE.WHITESPACE)],
+    },
+    {
+      name: 'backspace',
+      trigger: `\\\nsomething`,
+      expected: [Factory.Token('something', 2, TOKEN_TYPE.IDENTIFIER)],
+    },
+  ])(
+    'ensures previous token block resets pending content before $name',
+    ({ trigger, expected }) => {
+      const PREFIX = '????????????';
+      const input = `${PREFIX}${trigger}`;
+      expect(new Lexer().tokenize(input)).toEqual([
+        Factory.Token(PREFIX, 1, TOKEN_TYPE.IDENTIFIER),
+        ...expected,
+      ]);
+    },
+  );
 
   it.skip('handles double quotes inside modifier values', () => {
     // uses double quotes for impex modifiers

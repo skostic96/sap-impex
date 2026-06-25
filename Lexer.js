@@ -41,6 +41,7 @@ const TOKEN_TYPE = {
   RBRACKET: 'RBRACKET',
   EQUALS: 'EQUALS',
   COMMA: 'COMMA',
+  DQUOTE: 'DQUOTE',
 };
 
 class Lexer {
@@ -48,9 +49,9 @@ class Lexer {
     // identifier after $, may contain alphanumeric characters, dots, dashes,
     // it's quite permissive, google it online
     // alphanumeric, dot, dash, underscore, testing one char at a time
-    MACRO_IDENTIFIER: /[A-Za-z0-9._-]/,
+    SIGIL_IDENTIFIER: /[A-Za-z0-9._-]/,
     NEWLINE: /[\r\n]/,
-    // dont treat newline as whitespace because it's tokenized
+    // dont treat newline as whitespace because it's separately tokenized
     WHITESPACE: /[ \t]/,
     IDENTIFIER: /[A-Za-z0-9_]/,
   };
@@ -65,11 +66,18 @@ class Lexer {
     ';': TOKEN_TYPE.SEMICOLON,
   };
 
+  SIGIL = {
+    $: TOKEN_TYPE.MACRO_REFERENCE,
+    '&': TOKEN_TYPE.DOCUMENT_REFERENCE,
+    '@': TOKEN_TYPE.SPECIAL_ATTRIBUTE,
+  };
+
   /** @param {any} val */
   isDefined(val) {
     return val !== undefined && val !== null;
   }
 
+  /** @param {number} idx */
   peek(idx = 0) {
     return this.source.charAt(this.i + idx);
   }
@@ -96,29 +104,37 @@ class Lexer {
       ++line;
     }
 
+    let pendingStart = i;
+
+    function flushPendingContent() {
+      // not empty
+      if (pendingStart < i) {
+        tokens.push(
+          Factory.Token(
+            input.slice(pendingStart, i),
+            line,
+            TOKEN_TYPE.IDENTIFIER,
+          ),
+        );
+      }
+    }
+
+    function resetPendingContent() {
+      pendingStart = i;
+    }
+
     const inputLength = input.length;
     while (i < inputLength) {
-      // we should start by figuring out what a line represents
-      // - a comment,
-      // - a quoted line,
-      // - a macro definition,
-      // - a script,
-      // - userrights block start & end
-      // - a header
-      // - a value line
-
-      // todo: document reference &
-      // todo: special attribute @
-      // todo: check if same as macro reference $
-      // todo: add separate modifier branch `push [` to stack, `push '` to stack
-
       if (this.isDefined(this.STRUCTURAL[peek()])) {
+        flushPendingContent();
         tokens.push(Factory.Token(peek(), line, this.STRUCTURAL[peek()]));
         ++i;
+        resetPendingContent();
         continue;
       }
 
       if (this.REGEX.IDENTIFIER.test(peek())) {
+        flushPendingContent();
         const identifierStart = i;
         ++i;
         while (i < inputLength) {
@@ -135,31 +151,39 @@ class Lexer {
             TOKEN_TYPE.IDENTIFIER,
           ),
         );
+        resetPendingContent();
         continue;
       }
 
-      if (peek() === '$') {
-        const macroStart = i;
+      if (this.isDefined(this.SIGIL[peek()])) {
+        const SIGIL_VALUE = peek();
+        flushPendingContent();
+        resetPendingContent();
+        const sigilStart = i;
         ++i;
-        while (i < inputLength) {
-          if (this.REGEX.MACRO_IDENTIFIER.test(peek())) {
-            // todo: here handle userrights block (maybe i dont have to? parser's job?)
-            ++i;
-            continue;
+        if (this.REGEX.SIGIL_IDENTIFIER.test(peek())) {
+          while (i < inputLength) {
+            if (this.REGEX.SIGIL_IDENTIFIER.test(peek())) {
+              ++i;
+              continue;
+            }
+            break;
           }
-          break;
+          tokens.push(
+            Factory.Token(
+              input.slice(sigilStart, i),
+              line,
+              this.SIGIL[SIGIL_VALUE],
+            ),
+          );
+          resetPendingContent();
+          continue;
         }
-        tokens.push(
-          Factory.Token(
-            input.slice(macroStart, i),
-            line,
-            TOKEN_TYPE.MACRO_REFERENCE,
-          ),
-        );
         continue;
       }
 
       if (peek() === '#') {
+        flushPendingContent();
         const commentOrScriptStart = i;
         ++i;
         if (peek() === '%') {
@@ -178,6 +202,7 @@ class Lexer {
               TOKEN_TYPE.SCRIPT,
             ),
           );
+          resetPendingContent();
           continue;
         }
         while (i < inputLength) {
@@ -195,26 +220,32 @@ class Lexer {
             TOKEN_TYPE.COMMENT,
           ),
         );
+        resetPendingContent();
         continue;
       }
 
       if (peek() === '\\') {
+        flushPendingContent();
         ++i;
         // Ignore the newline token
         consumeNewlineAdvanceLine();
+        resetPendingContent();
         continue;
       }
 
       if (this.REGEX.NEWLINE.test(peek())) {
+        flushPendingContent();
         const tokenLine = line;
         consumeNewlineAdvanceLine();
         tokens.push(
           Factory.Token(TOKEN.NEWLINE, tokenLine, TOKEN_TYPE.NEWLINE),
         );
+        resetPendingContent();
         continue;
       }
 
       if (this.REGEX.WHITESPACE.test(peek())) {
+        flushPendingContent();
         let whitespaceStart = i;
         ++i;
         while (i < inputLength) {
@@ -231,11 +262,12 @@ class Lexer {
             TOKEN_TYPE.WHITESPACE,
           ),
         );
+        resetPendingContent();
         continue;
       }
 
-      // todo: split double quote to separate token
-      if (input.charAt(i) === '"') {
+      if (peek() === '"') {
+        flushPendingContent();
         let quoteStart = i;
         // this is a start of a quoted string
         ++i;
@@ -257,7 +289,7 @@ class Lexer {
             // maybe start of macro
             ++i;
             // at least one valid char trailing $
-            if (this.REGEX.MACRO_IDENTIFIER.test(input.charAt(i))) {
+            if (this.REGEX.SIGIL_IDENTIFIER.test(input.charAt(i))) {
               // start of macro
               if (quoteStart < macroStart) {
                 // not empty
@@ -268,7 +300,7 @@ class Lexer {
               ++i;
               while (i < inputLength) {
                 // find last
-                if (this.REGEX.MACRO_IDENTIFIER.test(input.charAt(i))) {
+                if (this.REGEX.SIGIL_IDENTIFIER.test(input.charAt(i))) {
                   // parse macro stuff
                   ++i;
                   continue;
@@ -291,11 +323,15 @@ class Lexer {
         }
 
         tokens.push(Factory.Token(input.slice(quoteStart, i), line));
+        resetPendingContent();
         continue;
       }
 
       ++i;
     }
+
+    flushPendingContent();
+    resetPendingContent();
 
     return tokens;
   }
