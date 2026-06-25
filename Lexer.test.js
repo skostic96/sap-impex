@@ -19,9 +19,10 @@ describe('Lexer', () => {
       //
       Factory.Token('<NL>', 1, TOKEN_TYPE.NEWLINE),
       //
-      Factory.Token('"', 2),
+      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
       Factory.Token('$mediaPrefix', 2, TOKEN_TYPE.MACRO_REFERENCE),
-      Factory.Token('/h12/banner.png"', 2),
+      Factory.Token('/h12/banner.png', 2, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
       Factory.Token('<NL>', 2, TOKEN_TYPE.NEWLINE),
       //
       Factory.Token('<NL>', 3, TOKEN_TYPE.NEWLINE),
@@ -29,9 +30,10 @@ describe('Lexer', () => {
       Factory.Token('# One string on a line', 4, TOKEN_TYPE.COMMENT),
       Factory.Token('<NL>', 4, TOKEN_TYPE.NEWLINE),
       //
-      Factory.Token('"', 5),
+      Factory.Token('"', 5, TOKEN_TYPE.DQUOTE),
       Factory.Token('$mediaPrefix', 5, TOKEN_TYPE.MACRO_REFERENCE),
-      Factory.Token('/h12/banner-secondary.png"', 5),
+      Factory.Token('/h12/banner-secondary.png', 5, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 5, TOKEN_TYPE.DQUOTE),
       Factory.Token('<NL>', 5, TOKEN_TYPE.NEWLINE),
       //
       Factory.Token('<NL>', 6, TOKEN_TYPE.NEWLINE),
@@ -43,25 +45,30 @@ describe('Lexer', () => {
       ),
       Factory.Token('<NL>', 7, TOKEN_TYPE.NEWLINE),
       //
-      Factory.Token('"Homepage Banner Slot"', 8),
+      Factory.Token('"', 8, TOKEN_TYPE.DQUOTE),
+      Factory.Token('Homepage Banner Slot', 8, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 8, TOKEN_TYPE.DQUOTE),
       Factory.Token(' ', 8, TOKEN_TYPE.WHITESPACE),
-      Factory.Token('"', 8),
+      Factory.Token('"', 8, TOKEN_TYPE.DQUOTE),
       // should parse macro names containing dots and dashes and numbers
       Factory.Token(
         '$2mediaP2refix.something-else.property',
         8,
         TOKEN_TYPE.MACRO_REFERENCE,
       ),
-      Factory.Token('/h12/banner-secondary.png"', 8),
+      Factory.Token('/h12/banner-secondary.png', 8, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 8, TOKEN_TYPE.DQUOTE),
       Factory.Token('<NL>', 8, TOKEN_TYPE.NEWLINE),
       //
       Factory.Token('<NL>', 9, TOKEN_TYPE.NEWLINE),
       //
-      Factory.Token('"something"', 10),
+      Factory.Token('"', 10, TOKEN_TYPE.DQUOTE),
+      Factory.Token('something', 10, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 10, TOKEN_TYPE.DQUOTE),
     ]);
   });
 
-  it('should handle single quote containing newlines', () => {
+  it('should handle single double quote containing newlines', () => {
     const input = `"$mediaPrefix/line one
 line two
 $another.macro-ref/tail"`;
@@ -70,11 +77,12 @@ $another.macro-ref/tail"`;
 
     expect(tokens).toEqual([
       //
-      Factory.Token('"', 1),
+      Factory.Token('"', 1, TOKEN_TYPE.DQUOTE),
       Factory.Token('$mediaPrefix', 1, TOKEN_TYPE.MACRO_REFERENCE),
-      Factory.Token('/line one\nline two\n', 1),
+      Factory.Token('/line one\nline two\n', 1, TOKEN_TYPE.IDENTIFIER),
       Factory.Token('$another.macro-ref', 1, TOKEN_TYPE.MACRO_REFERENCE),
-      Factory.Token('/tail"', 1),
+      Factory.Token('/tail', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 1, TOKEN_TYPE.DQUOTE),
     ]);
   });
 
@@ -89,7 +97,9 @@ $another.macro-ref/tail"`;
       //
       Factory.Token('<NL>', 1, TOKEN_TYPE.NEWLINE),
       //
-      Factory.Token('"line one""line two"', 2),
+      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
+      Factory.Token('line one""line two', 2, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
       Factory.Token('<NL>', 2, TOKEN_TYPE.NEWLINE),
       //
       Factory.Token('    ', 3, TOKEN_TYPE.WHITESPACE),
@@ -113,12 +123,20 @@ newline" # comment too`;
       Factory.Token('#some comment here', 1, TOKEN_TYPE.COMMENT),
       Factory.Token('<NL>', 1, TOKEN_TYPE.NEWLINE),
       //
-      Factory.Token('"a quote"', 2),
+      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
+      Factory.Token('a quote', 2, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
       Factory.Token(' ', 2, TOKEN_TYPE.WHITESPACE),
       Factory.Token('#some comment here', 2, TOKEN_TYPE.COMMENT),
       Factory.Token('<NL>', 2, TOKEN_TYPE.NEWLINE),
       //
-      Factory.Token('"a quote here #confuse lexer\nnewline"', 3),
+      Factory.Token('"', 3, TOKEN_TYPE.DQUOTE),
+      Factory.Token(
+        'a quote here #confuse lexer\nnewline',
+        3,
+        TOKEN_TYPE.IDENTIFIER,
+      ),
+      Factory.Token('"', 3, TOKEN_TYPE.DQUOTE),
       Factory.Token(' ', 3, TOKEN_TYPE.WHITESPACE),
       Factory.Token('# comment too', 3, TOKEN_TYPE.COMMENT),
     ]);
@@ -241,7 +259,9 @@ $macro=stuff "quote" @????`; // This no EOF newline is critical to this test
       Factory.Token('=', 2, TOKEN_TYPE.EQUALS),
       Factory.Token('stuff', 2, TOKEN_TYPE.IDENTIFIER),
       Factory.Token(' ', 2, TOKEN_TYPE.WHITESPACE),
-      Factory.Token('"quote"', 2),
+      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
+      Factory.Token('quote', 2, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
       Factory.Token(' ', 2, TOKEN_TYPE.WHITESPACE),
       Factory.Token('@????', 2, TOKEN_TYPE.IDENTIFIER),
     ]);
@@ -258,7 +278,9 @@ $macro=stuff "quote" @????
       Factory.Token('=', 2, TOKEN_TYPE.EQUALS),
       Factory.Token('stuff', 2, TOKEN_TYPE.IDENTIFIER),
       Factory.Token(' ', 2, TOKEN_TYPE.WHITESPACE),
-      Factory.Token('"quote"', 2),
+      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
+      Factory.Token('quote', 2, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
       Factory.Token(' ', 2, TOKEN_TYPE.WHITESPACE),
       Factory.Token('@????', 2, TOKEN_TYPE.IDENTIFIER),
       Factory.Token(TOKEN.NEWLINE, 2, TOKEN_TYPE.NEWLINE),
@@ -331,7 +353,9 @@ $macro=stuff "quote" @????
     const input = `?"quote"`;
     expect(new Lexer().tokenize(input)).toEqual([
       Factory.Token('?', 1, TOKEN_TYPE.IDENTIFIER),
-      Factory.Token('"quote"', 1),
+      Factory.Token('"', 1, TOKEN_TYPE.DQUOTE),
+      Factory.Token('quote', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 1, TOKEN_TYPE.DQUOTE),
     ]);
   });
 
@@ -416,7 +440,11 @@ something`;
     {
       name: 'quote',
       trigger: '"quote"',
-      expected: [Factory.Token('"quote"', 1)],
+      expected: [
+        Factory.Token('"', 1, TOKEN_TYPE.DQUOTE),
+        Factory.Token('quote', 1, TOKEN_TYPE.IDENTIFIER),
+        Factory.Token('"', 1, TOKEN_TYPE.DQUOTE),
+      ],
     },
     {
       name: 'identifier',
@@ -444,6 +472,8 @@ something`;
       ]);
     },
   );
+
+  it.todo('tokenizes real life impex files');
 
   it.skip('handles double quotes inside modifier values', () => {
     // uses double quotes for impex modifiers

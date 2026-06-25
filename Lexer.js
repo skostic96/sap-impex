@@ -266,18 +266,21 @@ class Lexer {
         continue;
       }
 
+      // todo: handle single quotes
       if (peek() === '"') {
         flushPendingContent();
-        let quoteStart = i;
+        tokens.push(Factory.Token(peek(), line, TOKEN_TYPE.DQUOTE));
         // this is a start of a quoted string
         ++i;
+        let quoteStart = i;
         // collect quoted string
         while (i < inputLength) {
           // ending or escaping quote
           if (input.charAt(i) === '"') {
-            ++i;
-            if (input.charAt(i) === '"') {
-              // escaped quote
+            // if escaped quote
+            if (peek(1) === '"') {
+              // eat both quotes
+              ++i;
               ++i;
               continue;
             }
@@ -294,7 +297,11 @@ class Lexer {
               if (quoteStart < macroStart) {
                 // not empty
                 tokens.push(
-                  Factory.Token(input.slice(quoteStart, macroStart), line),
+                  Factory.Token(
+                    input.slice(quoteStart, macroStart),
+                    line,
+                    TOKEN_TYPE.IDENTIFIER,
+                  ),
                 );
               }
               ++i;
@@ -322,7 +329,15 @@ class Lexer {
           ++i;
         }
 
-        tokens.push(Factory.Token(input.slice(quoteStart, i), line));
+        tokens.push(
+          Factory.Token(
+            input.slice(quoteStart, i),
+            line,
+            TOKEN_TYPE.IDENTIFIER,
+          ),
+        );
+        tokens.push(Factory.Token(peek(), line, TOKEN_TYPE.DQUOTE));
+        ++i;
         resetPendingContent();
         continue;
       }
