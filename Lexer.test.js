@@ -294,7 +294,6 @@ UPDATE Product[batchmode=true];code[unique=true];supercategories(code,$contentCV
       Factory.Token(';', 2, TOKEN_TYPE.SEMICOLON),
       Factory.Token('PROD', 2, TOKEN_TYPE.IDENTIFIER),
       Factory.Token('-', 2, TOKEN_TYPE.IDENTIFIER),
-      // TODO: Fix not parsing - characters
       Factory.Token('001', 2, TOKEN_TYPE.IDENTIFIER),
       Factory.Token(';', 2, TOKEN_TYPE.SEMICOLON),
       Factory.Token('newCategory', 2, TOKEN_TYPE.IDENTIFIER),
@@ -525,7 +524,61 @@ something`;
     },
   );
 
-  it.todo('tokenizes real life impex files');
+  it('correctly parses characters immediately following a macro inside quotes', () => {
+    // This input specifically tests that the lexer does NOT skip
+    // the ':' after $macro1, and does NOT skip the closing "'" after $macro2.
+    const input = `'$macro1:$macro2'`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token("'", 1, TOKEN_TYPE.SINGLE_QUOTE),
+      Factory.Token('$macro1', 1, TOKEN_TYPE.MACRO_REFERENCE),
+      Factory.Token(':', 1, TOKEN_TYPE.IDENTIFIER), // Fails if missing continue;
+      Factory.Token('$macro2', 1, TOKEN_TYPE.MACRO_REFERENCE),
+      Factory.Token("'", 1, TOKEN_TYPE.SINGLE_QUOTE), // Fails if missing continue;
+    ]);
+  });
+
+  it('correctly handles a lone dollar sign immediately before a closing quote', () => {
+    const input = `"$"`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
+      Factory.Token('$', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
+    ]);
+  });
+
+  it('correctly handles a lone dollar sign followed by a non-macro character inside quotes', () => {
+    const input = `"$ "`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
+      Factory.Token('$ ', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
+    ]);
+  });
+
+  it('escapes only newline with preceding backslash, which is kept otherwise', () => {
+    const input = `\\r\\
+something`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('\\', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('r', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('something', 2, TOKEN_TYPE.IDENTIFIER),
+    ]);
+  });
+
+  it('flushes content before and after escaped newline', () => {
+    const input = `????\\
+?????something`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('????', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('?????', 2, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('something', 2, TOKEN_TYPE.IDENTIFIER),
+    ]);
+  });
 
   it.skip('handles double quotes inside modifier values', () => {
     // uses double quotes for impex modifiers
@@ -559,4 +612,65 @@ $setPassword=@password[translator=de.hybris.platform.impex.jalo.translators.Conv
   it.todo('handles crlf and lf newlines ending');
 
   it.todo('should handle unrecognized (stuff?)');
+});
+
+describe('Lexer - on real world impex', () => {
+  it('tokenizes modifier with double quotes', () => {
+    const input = `
+INSERT_UPDATE AttributeFieldConfig;code[unique=true];fieldHeader;indexedAttributeDescriptorsInternal;fieldFormatterBean;fieldExtractorBean;productType(code);productCategory(catalogVersion(catalog(id),version),code)
+;attr_additional_image;additional_image;Product.galleryImages[0].medias[0];acceleratorMediaFieldFormatter;attributeFieldExtractorStrategy;Product;
+;attr_product_image;product_image;Product.picture;acceleratorMediaFieldFormatter;attributeFieldExtractorStrategy;Product;
+;attr_age_group;age_group;Product.supercategories;acceleratorAgeGroupFormatter;attributeFieldExtractorStrategy;Product;
+
+INSERT_UPDATE SelfReferenceFieldConfig;code[unique=true];fieldHeader;fieldFormatterBean;fieldExtractorBean;productType(code);productCategory(catalogVersion(catalog(id),version),code)
+;self_product_url;product_url;acceleratorProductFieldFormatter;selfReferenceExtractorStrategy;Product;
+
+INSERT_UPDATE CSVExportFieldConfigRelation;source(code)[unique=true];target(code)[unique=true]
+;minimal;attr_product_image
+;minimal;self_product_url
+;ideal;attr_product_image
+;ideal;self_product_url
+;ideal;attr_age_group
+;ideal;attr_additional_image
+
+INSERT_UPDATE URLResolutionProperties;code[unique=true];encodingAttributes;subPath;secure;queryParameters;baseSite(uid)
+;secure_electr;;;true;;electronics
+
+UPDATE CSVExportCronJob;code[unique=true];urlResolutionProperties(code)[default="secure_electr"];
+;ProductsupApiExport;
+;ProductsupApiDeltaExport;
+;ProductsupApiIncrementalExport;
+
+# Separate import for testing purposes because default catalog has no products. If this fails however, it won't stop the 
+# secure_electr from being added, thats why it's split.
+UPDATE CSVExportCronJob;code[unique=true];catalogVersion(catalog(id),version);
+;ProductsupApiExport;apparelProductCatalog:Online;
+;ProductsupApiDeltaExport;apparelProductCatalog:Online;
+;ProductsupApiIncrementalExport;apparelProductCatalog:Online;
+`;
+
+    expect(new Lexer().tokenize(input)).toMatchSnapshot();
+  });
+
+  it('tokenizes impex with userrights', () => {
+    const input = `
+$regulargroup=regulargroup
+$customergroup=customergroup
+
+$passwordEncoding=md5
+$defaultPassword=12341234
+$setPassword=@password[translator=de.hybris.platform.impex.jalo.translators.ConvertPlaintextToEncodedUserPasswordTranslator][default='$passwordEncoding:$defaultPassword']
+
+
+
+$START_USERRIGHTS;;;;;;;;;
+Type;UID;MemberOfGroups;Password;Target;read;change;create;remove;change_perm
+UserGroup;cockpitgroup;;;;;;;;
+;;;;WorldpayAPMConfiguration;+;+;+;+;+;
+;;;;WorldpayCurrencyRange;+;+;+;+;+;
+$END_USERRIGHTS;;;;;
+`;
+
+    expect(new Lexer().tokenize(input)).toMatchSnapshot();
+  });
 });

@@ -1,0 +1,2306 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Lexer - on real world impex tokenizes impex with userrights 1`] = `
+[
+  Token {
+    "line": 1,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 2,
+    "type": "MACRO_REFERENCE",
+    "value": "$regulargroup",
+  },
+  Token {
+    "line": 2,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "regulargroup",
+  },
+  Token {
+    "line": 2,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 3,
+    "type": "MACRO_REFERENCE",
+    "value": "$customergroup",
+  },
+  Token {
+    "line": 3,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 3,
+    "type": "IDENTIFIER",
+    "value": "customergroup",
+  },
+  Token {
+    "line": 3,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 4,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 5,
+    "type": "MACRO_REFERENCE",
+    "value": "$passwordEncoding",
+  },
+  Token {
+    "line": 5,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 5,
+    "type": "IDENTIFIER",
+    "value": "md5",
+  },
+  Token {
+    "line": 5,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 6,
+    "type": "MACRO_REFERENCE",
+    "value": "$defaultPassword",
+  },
+  Token {
+    "line": 6,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 6,
+    "type": "IDENTIFIER",
+    "value": "12341234",
+  },
+  Token {
+    "line": 6,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 7,
+    "type": "MACRO_REFERENCE",
+    "value": "$setPassword",
+  },
+  Token {
+    "line": 7,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 7,
+    "type": "SPECIAL_ATTRIBUTE",
+    "value": "@password",
+  },
+  Token {
+    "line": 7,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "translator",
+  },
+  Token {
+    "line": 7,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "de",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": ".",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "hybris",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": ".",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "platform",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": ".",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "impex",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": ".",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "jalo",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": ".",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "translators",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": ".",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "ConvertPlaintextToEncodedUserPasswordTranslator",
+  },
+  Token {
+    "line": 7,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 7,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "default",
+  },
+  Token {
+    "line": 7,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 7,
+    "type": "SINGLE_QUOTE",
+    "value": "'",
+  },
+  Token {
+    "line": 7,
+    "type": "MACRO_REFERENCE",
+    "value": "$passwordEncoding",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": ":",
+  },
+  Token {
+    "line": 7,
+    "type": "MACRO_REFERENCE",
+    "value": "$defaultPassword",
+  },
+  Token {
+    "line": 7,
+    "type": "SINGLE_QUOTE",
+    "value": "'",
+  },
+  Token {
+    "line": 7,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 7,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 8,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 9,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 10,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 11,
+    "type": "MACRO_REFERENCE",
+    "value": "$START_USERRIGHTS",
+  },
+  Token {
+    "line": 11,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 11,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 11,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 11,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 11,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 11,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 11,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 11,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 11,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 11,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "Type",
+  },
+  Token {
+    "line": 12,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "UID",
+  },
+  Token {
+    "line": 12,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "MemberOfGroups",
+  },
+  Token {
+    "line": 12,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "Password",
+  },
+  Token {
+    "line": 12,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "Target",
+  },
+  Token {
+    "line": 12,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "read",
+  },
+  Token {
+    "line": 12,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "change",
+  },
+  Token {
+    "line": 12,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "create",
+  },
+  Token {
+    "line": 12,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "remove",
+  },
+  Token {
+    "line": 12,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "change_perm",
+  },
+  Token {
+    "line": 12,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 13,
+    "type": "IDENTIFIER",
+    "value": "UserGroup",
+  },
+  Token {
+    "line": 13,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 13,
+    "type": "IDENTIFIER",
+    "value": "cockpitgroup",
+  },
+  Token {
+    "line": 13,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 13,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 13,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 13,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 13,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 13,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 13,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 13,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 13,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 14,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 14,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 14,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 14,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 14,
+    "type": "IDENTIFIER",
+    "value": "WorldpayAPMConfiguration",
+  },
+  Token {
+    "line": 14,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 14,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 14,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 14,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 14,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 14,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 14,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 14,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 14,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 14,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 14,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 14,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "IDENTIFIER",
+    "value": "WorldpayCurrencyRange",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 16,
+    "type": "MACRO_REFERENCE",
+    "value": "$END_USERRIGHTS",
+  },
+  Token {
+    "line": 16,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 16,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 16,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 16,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 16,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 16,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+]
+`;
+
+exports[`Lexer - on real world impex tokenizes modifier with double quotes 1`] = `
+[
+  Token {
+    "line": 1,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "INSERT_UPDATE",
+  },
+  Token {
+    "line": 2,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "AttributeFieldConfig",
+  },
+  Token {
+    "line": 2,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "code",
+  },
+  Token {
+    "line": 2,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "unique",
+  },
+  Token {
+    "line": 2,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "true",
+  },
+  Token {
+    "line": 2,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 2,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "fieldHeader",
+  },
+  Token {
+    "line": 2,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "indexedAttributeDescriptorsInternal",
+  },
+  Token {
+    "line": 2,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "fieldFormatterBean",
+  },
+  Token {
+    "line": 2,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "fieldExtractorBean",
+  },
+  Token {
+    "line": 2,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "productType",
+  },
+  Token {
+    "line": 2,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "code",
+  },
+  Token {
+    "line": 2,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 2,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "productCategory",
+  },
+  Token {
+    "line": 2,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "catalogVersion",
+  },
+  Token {
+    "line": 2,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "catalog",
+  },
+  Token {
+    "line": 2,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "id",
+  },
+  Token {
+    "line": 2,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 2,
+    "type": "COMMA",
+    "value": ",",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "version",
+  },
+  Token {
+    "line": 2,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 2,
+    "type": "COMMA",
+    "value": ",",
+  },
+  Token {
+    "line": 2,
+    "type": "IDENTIFIER",
+    "value": "code",
+  },
+  Token {
+    "line": 2,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 2,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 3,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 3,
+    "type": "IDENTIFIER",
+    "value": "attr_additional_image",
+  },
+  Token {
+    "line": 3,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 3,
+    "type": "IDENTIFIER",
+    "value": "additional_image",
+  },
+  Token {
+    "line": 3,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 3,
+    "type": "IDENTIFIER",
+    "value": "Product",
+  },
+  Token {
+    "line": 3,
+    "type": "IDENTIFIER",
+    "value": ".",
+  },
+  Token {
+    "line": 3,
+    "type": "IDENTIFIER",
+    "value": "galleryImages",
+  },
+  Token {
+    "line": 3,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 3,
+    "type": "IDENTIFIER",
+    "value": "0",
+  },
+  Token {
+    "line": 3,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 3,
+    "type": "IDENTIFIER",
+    "value": ".",
+  },
+  Token {
+    "line": 3,
+    "type": "IDENTIFIER",
+    "value": "medias",
+  },
+  Token {
+    "line": 3,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 3,
+    "type": "IDENTIFIER",
+    "value": "0",
+  },
+  Token {
+    "line": 3,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 3,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 3,
+    "type": "IDENTIFIER",
+    "value": "acceleratorMediaFieldFormatter",
+  },
+  Token {
+    "line": 3,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 3,
+    "type": "IDENTIFIER",
+    "value": "attributeFieldExtractorStrategy",
+  },
+  Token {
+    "line": 3,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 3,
+    "type": "IDENTIFIER",
+    "value": "Product",
+  },
+  Token {
+    "line": 3,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 3,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 4,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 4,
+    "type": "IDENTIFIER",
+    "value": "attr_product_image",
+  },
+  Token {
+    "line": 4,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 4,
+    "type": "IDENTIFIER",
+    "value": "product_image",
+  },
+  Token {
+    "line": 4,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 4,
+    "type": "IDENTIFIER",
+    "value": "Product",
+  },
+  Token {
+    "line": 4,
+    "type": "IDENTIFIER",
+    "value": ".",
+  },
+  Token {
+    "line": 4,
+    "type": "IDENTIFIER",
+    "value": "picture",
+  },
+  Token {
+    "line": 4,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 4,
+    "type": "IDENTIFIER",
+    "value": "acceleratorMediaFieldFormatter",
+  },
+  Token {
+    "line": 4,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 4,
+    "type": "IDENTIFIER",
+    "value": "attributeFieldExtractorStrategy",
+  },
+  Token {
+    "line": 4,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 4,
+    "type": "IDENTIFIER",
+    "value": "Product",
+  },
+  Token {
+    "line": 4,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 4,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 5,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 5,
+    "type": "IDENTIFIER",
+    "value": "attr_age_group",
+  },
+  Token {
+    "line": 5,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 5,
+    "type": "IDENTIFIER",
+    "value": "age_group",
+  },
+  Token {
+    "line": 5,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 5,
+    "type": "IDENTIFIER",
+    "value": "Product",
+  },
+  Token {
+    "line": 5,
+    "type": "IDENTIFIER",
+    "value": ".",
+  },
+  Token {
+    "line": 5,
+    "type": "IDENTIFIER",
+    "value": "supercategories",
+  },
+  Token {
+    "line": 5,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 5,
+    "type": "IDENTIFIER",
+    "value": "acceleratorAgeGroupFormatter",
+  },
+  Token {
+    "line": 5,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 5,
+    "type": "IDENTIFIER",
+    "value": "attributeFieldExtractorStrategy",
+  },
+  Token {
+    "line": 5,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 5,
+    "type": "IDENTIFIER",
+    "value": "Product",
+  },
+  Token {
+    "line": 5,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 5,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 6,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "INSERT_UPDATE",
+  },
+  Token {
+    "line": 7,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "SelfReferenceFieldConfig",
+  },
+  Token {
+    "line": 7,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "code",
+  },
+  Token {
+    "line": 7,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "unique",
+  },
+  Token {
+    "line": 7,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "true",
+  },
+  Token {
+    "line": 7,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 7,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "fieldHeader",
+  },
+  Token {
+    "line": 7,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "fieldFormatterBean",
+  },
+  Token {
+    "line": 7,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "fieldExtractorBean",
+  },
+  Token {
+    "line": 7,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "productType",
+  },
+  Token {
+    "line": 7,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "code",
+  },
+  Token {
+    "line": 7,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 7,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "productCategory",
+  },
+  Token {
+    "line": 7,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "catalogVersion",
+  },
+  Token {
+    "line": 7,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "catalog",
+  },
+  Token {
+    "line": 7,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "id",
+  },
+  Token {
+    "line": 7,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 7,
+    "type": "COMMA",
+    "value": ",",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "version",
+  },
+  Token {
+    "line": 7,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 7,
+    "type": "COMMA",
+    "value": ",",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "code",
+  },
+  Token {
+    "line": 7,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 7,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 8,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": "self_product_url",
+  },
+  Token {
+    "line": 8,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": "product_url",
+  },
+  Token {
+    "line": 8,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": "acceleratorProductFieldFormatter",
+  },
+  Token {
+    "line": 8,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": "selfReferenceExtractorStrategy",
+  },
+  Token {
+    "line": 8,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": "Product",
+  },
+  Token {
+    "line": 8,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 8,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 9,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 10,
+    "type": "IDENTIFIER",
+    "value": "INSERT_UPDATE",
+  },
+  Token {
+    "line": 10,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 10,
+    "type": "IDENTIFIER",
+    "value": "CSVExportFieldConfigRelation",
+  },
+  Token {
+    "line": 10,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 10,
+    "type": "IDENTIFIER",
+    "value": "source",
+  },
+  Token {
+    "line": 10,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 10,
+    "type": "IDENTIFIER",
+    "value": "code",
+  },
+  Token {
+    "line": 10,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 10,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 10,
+    "type": "IDENTIFIER",
+    "value": "unique",
+  },
+  Token {
+    "line": 10,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 10,
+    "type": "IDENTIFIER",
+    "value": "true",
+  },
+  Token {
+    "line": 10,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 10,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 10,
+    "type": "IDENTIFIER",
+    "value": "target",
+  },
+  Token {
+    "line": 10,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 10,
+    "type": "IDENTIFIER",
+    "value": "code",
+  },
+  Token {
+    "line": 10,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 10,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 10,
+    "type": "IDENTIFIER",
+    "value": "unique",
+  },
+  Token {
+    "line": 10,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 10,
+    "type": "IDENTIFIER",
+    "value": "true",
+  },
+  Token {
+    "line": 10,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 10,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 11,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 11,
+    "type": "IDENTIFIER",
+    "value": "minimal",
+  },
+  Token {
+    "line": 11,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 11,
+    "type": "IDENTIFIER",
+    "value": "attr_product_image",
+  },
+  Token {
+    "line": 11,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 12,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "minimal",
+  },
+  Token {
+    "line": 12,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "self_product_url",
+  },
+  Token {
+    "line": 12,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 13,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 13,
+    "type": "IDENTIFIER",
+    "value": "ideal",
+  },
+  Token {
+    "line": 13,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 13,
+    "type": "IDENTIFIER",
+    "value": "attr_product_image",
+  },
+  Token {
+    "line": 13,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 14,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 14,
+    "type": "IDENTIFIER",
+    "value": "ideal",
+  },
+  Token {
+    "line": 14,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 14,
+    "type": "IDENTIFIER",
+    "value": "self_product_url",
+  },
+  Token {
+    "line": 14,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "IDENTIFIER",
+    "value": "ideal",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "IDENTIFIER",
+    "value": "attr_age_group",
+  },
+  Token {
+    "line": 15,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 16,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 16,
+    "type": "IDENTIFIER",
+    "value": "ideal",
+  },
+  Token {
+    "line": 16,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 16,
+    "type": "IDENTIFIER",
+    "value": "attr_additional_image",
+  },
+  Token {
+    "line": 16,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 17,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 18,
+    "type": "IDENTIFIER",
+    "value": "INSERT_UPDATE",
+  },
+  Token {
+    "line": 18,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 18,
+    "type": "IDENTIFIER",
+    "value": "URLResolutionProperties",
+  },
+  Token {
+    "line": 18,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 18,
+    "type": "IDENTIFIER",
+    "value": "code",
+  },
+  Token {
+    "line": 18,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 18,
+    "type": "IDENTIFIER",
+    "value": "unique",
+  },
+  Token {
+    "line": 18,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 18,
+    "type": "IDENTIFIER",
+    "value": "true",
+  },
+  Token {
+    "line": 18,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 18,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 18,
+    "type": "IDENTIFIER",
+    "value": "encodingAttributes",
+  },
+  Token {
+    "line": 18,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 18,
+    "type": "IDENTIFIER",
+    "value": "subPath",
+  },
+  Token {
+    "line": 18,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 18,
+    "type": "IDENTIFIER",
+    "value": "secure",
+  },
+  Token {
+    "line": 18,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 18,
+    "type": "IDENTIFIER",
+    "value": "queryParameters",
+  },
+  Token {
+    "line": 18,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 18,
+    "type": "IDENTIFIER",
+    "value": "baseSite",
+  },
+  Token {
+    "line": 18,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 18,
+    "type": "IDENTIFIER",
+    "value": "uid",
+  },
+  Token {
+    "line": 18,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 18,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 19,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 19,
+    "type": "IDENTIFIER",
+    "value": "secure_electr",
+  },
+  Token {
+    "line": 19,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 19,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 19,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 19,
+    "type": "IDENTIFIER",
+    "value": "true",
+  },
+  Token {
+    "line": 19,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 19,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 19,
+    "type": "IDENTIFIER",
+    "value": "electronics",
+  },
+  Token {
+    "line": 19,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 20,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 21,
+    "type": "IDENTIFIER",
+    "value": "UPDATE",
+  },
+  Token {
+    "line": 21,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 21,
+    "type": "IDENTIFIER",
+    "value": "CSVExportCronJob",
+  },
+  Token {
+    "line": 21,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 21,
+    "type": "IDENTIFIER",
+    "value": "code",
+  },
+  Token {
+    "line": 21,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 21,
+    "type": "IDENTIFIER",
+    "value": "unique",
+  },
+  Token {
+    "line": 21,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 21,
+    "type": "IDENTIFIER",
+    "value": "true",
+  },
+  Token {
+    "line": 21,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 21,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 21,
+    "type": "IDENTIFIER",
+    "value": "urlResolutionProperties",
+  },
+  Token {
+    "line": 21,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 21,
+    "type": "IDENTIFIER",
+    "value": "code",
+  },
+  Token {
+    "line": 21,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 21,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 21,
+    "type": "IDENTIFIER",
+    "value": "default",
+  },
+  Token {
+    "line": 21,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 21,
+    "type": "DOUBLE_QUOTE",
+    "value": """,
+  },
+  Token {
+    "line": 21,
+    "type": "IDENTIFIER",
+    "value": "secure_electr",
+  },
+  Token {
+    "line": 21,
+    "type": "DOUBLE_QUOTE",
+    "value": """,
+  },
+  Token {
+    "line": 21,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 21,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 21,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 22,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 22,
+    "type": "IDENTIFIER",
+    "value": "ProductsupApiExport",
+  },
+  Token {
+    "line": 22,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 22,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 23,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 23,
+    "type": "IDENTIFIER",
+    "value": "ProductsupApiDeltaExport",
+  },
+  Token {
+    "line": 23,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 23,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 24,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 24,
+    "type": "IDENTIFIER",
+    "value": "ProductsupApiIncrementalExport",
+  },
+  Token {
+    "line": 24,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 24,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 25,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 26,
+    "type": "COMMENT",
+    "value": "# Separate import for testing purposes because default catalog has no products. If this fails however, it won't stop the ",
+  },
+  Token {
+    "line": 26,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 27,
+    "type": "COMMENT",
+    "value": "# secure_electr from being added, thats why it's split.",
+  },
+  Token {
+    "line": 27,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 28,
+    "type": "IDENTIFIER",
+    "value": "UPDATE",
+  },
+  Token {
+    "line": 28,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 28,
+    "type": "IDENTIFIER",
+    "value": "CSVExportCronJob",
+  },
+  Token {
+    "line": 28,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 28,
+    "type": "IDENTIFIER",
+    "value": "code",
+  },
+  Token {
+    "line": 28,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 28,
+    "type": "IDENTIFIER",
+    "value": "unique",
+  },
+  Token {
+    "line": 28,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 28,
+    "type": "IDENTIFIER",
+    "value": "true",
+  },
+  Token {
+    "line": 28,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 28,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 28,
+    "type": "IDENTIFIER",
+    "value": "catalogVersion",
+  },
+  Token {
+    "line": 28,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 28,
+    "type": "IDENTIFIER",
+    "value": "catalog",
+  },
+  Token {
+    "line": 28,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 28,
+    "type": "IDENTIFIER",
+    "value": "id",
+  },
+  Token {
+    "line": 28,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 28,
+    "type": "COMMA",
+    "value": ",",
+  },
+  Token {
+    "line": 28,
+    "type": "IDENTIFIER",
+    "value": "version",
+  },
+  Token {
+    "line": 28,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 28,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 28,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 29,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": "ProductsupApiExport",
+  },
+  Token {
+    "line": 29,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": "apparelProductCatalog",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": ":",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": "Online",
+  },
+  Token {
+    "line": 29,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 29,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 30,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 30,
+    "type": "IDENTIFIER",
+    "value": "ProductsupApiDeltaExport",
+  },
+  Token {
+    "line": 30,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 30,
+    "type": "IDENTIFIER",
+    "value": "apparelProductCatalog",
+  },
+  Token {
+    "line": 30,
+    "type": "IDENTIFIER",
+    "value": ":",
+  },
+  Token {
+    "line": 30,
+    "type": "IDENTIFIER",
+    "value": "Online",
+  },
+  Token {
+    "line": 30,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 30,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 31,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 31,
+    "type": "IDENTIFIER",
+    "value": "ProductsupApiIncrementalExport",
+  },
+  Token {
+    "line": 31,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 31,
+    "type": "IDENTIFIER",
+    "value": "apparelProductCatalog",
+  },
+  Token {
+    "line": 31,
+    "type": "IDENTIFIER",
+    "value": ":",
+  },
+  Token {
+    "line": 31,
+    "type": "IDENTIFIER",
+    "value": "Online",
+  },
+  Token {
+    "line": 31,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 31,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+]
+`;

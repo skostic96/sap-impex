@@ -98,6 +98,7 @@ class Lexer {
     const tokens = [];
 
     let i = 0;
+    // TODO: fix current line tracking
     let line = 1;
 
     /** @param {number} idx */
@@ -234,9 +235,21 @@ class Lexer {
 
       if (peek() === '\\') {
         flushPendingContent();
+        const backslashStart = i;
         ++i;
-        // Ignore the newline token
-        consumeNewlineAdvanceLine();
+        if (this.REGEX.NEWLINE.test(peek())) {
+          // Ignore the newline token
+          consumeNewlineAdvanceLine();
+          resetPendingContent();
+          continue;
+        }
+        tokens.push(
+          Factory.Token(
+            input.slice(backslashStart, i),
+            line,
+            TOKEN_TYPE.IDENTIFIER,
+          ),
+        );
         resetPendingContent();
         continue;
       }
@@ -334,19 +347,23 @@ class Lexer {
                 ),
               );
               quoteStart = i;
+              continue;
             }
+            continue;
           }
 
           ++i;
         }
 
-        tokens.push(
-          Factory.Token(
-            input.slice(quoteStart, i),
-            line,
-            TOKEN_TYPE.IDENTIFIER,
-          ),
-        );
+        if (quoteStart < i) {
+          tokens.push(
+            Factory.Token(
+              input.slice(quoteStart, i),
+              line,
+              TOKEN_TYPE.IDENTIFIER,
+            ),
+          );
+        }
         tokens.push(Factory.Token(peek(), line, QUOTE_TYPE));
         ++i;
         resetPendingContent();
