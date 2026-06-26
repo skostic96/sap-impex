@@ -291,6 +291,7 @@ class Lexer {
         // Preserve opening quote
         const QUOTE_VALUE = peek();
         const QUOTE_TYPE = this.QUOTE[peek()];
+        const QUOTE_LINE = line;
 
         flushPendingContent();
         tokens.push(Factory.Token(peek(), line, QUOTE_TYPE));
@@ -299,6 +300,22 @@ class Lexer {
         let quoteStart = i;
         // collect quoted string
         while (i < inputLength) {
+          if (peek() === '\n') {
+            ++i;
+            ++line;
+            continue;
+          }
+
+          if (peek() === '\r') {
+            ++i;
+            ++line;
+            if (peek() === '\n') {
+              ++i;
+              continue;
+            }
+            continue;
+          }
+
           // ending or escaping quote
           if (input.charAt(i) === QUOTE_VALUE) {
             // if escaped quote
@@ -323,7 +340,7 @@ class Lexer {
                 tokens.push(
                   Factory.Token(
                     input.slice(quoteStart, macroStart),
-                    line,
+                    QUOTE_LINE,
                     TOKEN_TYPE.IDENTIFIER,
                   ),
                 );
@@ -342,7 +359,7 @@ class Lexer {
               tokens.push(
                 Factory.Token(
                   input.slice(macroStart, i),
-                  line,
+                  QUOTE_LINE,
                   TOKEN_TYPE.MACRO_REFERENCE,
                 ),
               );
@@ -359,12 +376,12 @@ class Lexer {
           tokens.push(
             Factory.Token(
               input.slice(quoteStart, i),
-              line,
+              QUOTE_LINE,
               TOKEN_TYPE.IDENTIFIER,
             ),
           );
         }
-        tokens.push(Factory.Token(peek(), line, QUOTE_TYPE));
+        tokens.push(Factory.Token(peek(), QUOTE_LINE, QUOTE_TYPE));
         ++i;
         resetPendingContent();
         continue;

@@ -189,10 +189,91 @@ newline" # comment too`;
         TOKEN_TYPE.IDENTIFIER,
       ),
       Factory.Token('"', 3, TOKEN_TYPE.DOUBLE_QUOTE),
-      Factory.Token(' ', 3, TOKEN_TYPE.WHITESPACE),
-      Factory.Token('# comment too', 3, TOKEN_TYPE.COMMENT),
+      //
+      Factory.Token(' ', 4, TOKEN_TYPE.WHITESPACE),
+      Factory.Token('# comment too', 4, TOKEN_TYPE.COMMENT),
     ]);
   });
+
+  it('reflects newlines consumed inside the previous quote', () => {
+    const input = `"a\nb"\n"c\nd"
+
+$macro=sth
+`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
+      Factory.Token('a\nb', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
+      //
+      Factory.Token(TOKEN.NEWLINE, 2, TOKEN_TYPE.NEWLINE),
+      //
+      Factory.Token('"', 3, TOKEN_TYPE.DOUBLE_QUOTE),
+      Factory.Token('c\nd', 3, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 3, TOKEN_TYPE.DOUBLE_QUOTE),
+      //
+      Factory.Token(TOKEN.NEWLINE, 4, TOKEN_TYPE.NEWLINE),
+      //
+      Factory.Token(TOKEN.NEWLINE, 5, TOKEN_TYPE.NEWLINE),
+      //
+      Factory.Token('$macro', 6, TOKEN_TYPE.MACRO_REFERENCE),
+      Factory.Token('=', 6, TOKEN_TYPE.EQUALS),
+      Factory.Token('sth', 6, TOKEN_TYPE.IDENTIFIER),
+      //
+      Factory.Token(TOKEN.NEWLINE, 6, TOKEN_TYPE.NEWLINE),
+    ]);
+  });
+
+  it.each([
+    // ---
+    {
+      endOfLineType: 'LF',
+      newlineChar: '\n',
+      quoteChar: '"',
+      quoteType: TOKEN_TYPE.DOUBLE_QUOTE,
+    },
+    {
+      endOfLineType: 'CR',
+      newlineChar: '\r',
+      quoteChar: '"',
+      quoteType: TOKEN_TYPE.DOUBLE_QUOTE,
+    },
+    {
+      endOfLineType: 'CRLF',
+      newlineChar: '\r\n',
+      quoteChar: '"',
+      quoteType: TOKEN_TYPE.DOUBLE_QUOTE,
+    },
+    // ---
+    {
+      endOfLineType: 'LF',
+      newlineChar: '\n',
+      quoteChar: "'",
+      quoteType: TOKEN_TYPE.SINGLE_QUOTE,
+    },
+    {
+      endOfLineType: 'CR',
+      newlineChar: '\r',
+      quoteChar: "'",
+      quoteType: TOKEN_TYPE.SINGLE_QUOTE,
+    },
+    {
+      endOfLineType: 'CRLF',
+      newlineChar: '\r\n',
+      quoteChar: "'",
+      quoteType: TOKEN_TYPE.SINGLE_QUOTE,
+    },
+  ])(
+    'handles line tracking correctly on multiline quote: [ end of line type - $endOfLineType, quote: $quoteType ]',
+    ({ endOfLineType, newlineChar, quoteChar, quoteType }) => {
+      const input = `${quoteChar}foo${newlineChar}bar${quoteChar}`;
+      expect(new Lexer().tokenize(input)).toEqual([
+        Factory.Token(quoteChar, 1, quoteType),
+        Factory.Token(`foo${newlineChar}bar`, 1, TOKEN_TYPE.IDENTIFIER),
+        Factory.Token(quoteChar, 1, quoteType),
+      ]);
+    },
+  );
 
   it('should handle script lines', () => {
     const input = `\
