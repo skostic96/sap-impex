@@ -1,7 +1,7 @@
 const { Lexer, Factory, TOKEN_TYPE, TOKEN } = require('./Lexer');
 
 describe('Lexer', () => {
-  it('should parse macros correctly', () => {
+  it('parses macros correctly', () => {
     const macrosImpex = `
 "$mediaPrefix/h12/banner.png"
 
@@ -68,7 +68,7 @@ describe('Lexer', () => {
     ]);
   });
 
-  it('should handle double quote containing newlines', () => {
+  it('handles double quote containing newlines', () => {
     const input = `"$mediaPrefix/line one
 line two
 $another.macro-ref/tail"`;
@@ -138,7 +138,7 @@ $another.macro-ref/tail"`;
     ]);
   });
 
-  it('should handle escaped newline outside of comment', () => {
+  it('handles escaped newline outside of comment', () => {
     const input = `
 "line one"\
 "line two"
@@ -158,7 +158,7 @@ $another.macro-ref/tail"`;
     ]);
   });
 
-  it('should handle comment after macro, quotes', () => {
+  it('handles comment after macro, quotes', () => {
     const input = `\
 $macro=definition #some comment here
 "a quote" #some comment here
@@ -275,7 +275,7 @@ $macro=sth
     },
   );
 
-  it('should handle script lines', () => {
+  it('handles script lines', () => {
     const input = `\
 #% impex.enableCodeExecution(true);
 #% if: condition
@@ -304,7 +304,7 @@ $macro=sth
     ]);
   });
 
-  it('should handle structural tokens', () => {
+  it('handles structural tokens', () => {
     const tokens = new Lexer().tokenize(`()[]=,;`);
 
     expect(tokens).toEqual([
@@ -318,7 +318,7 @@ $macro=sth
     ]);
   });
 
-  it('should handle identifiers', () => {
+  it('handles identifiers', () => {
     const input = `INSERT_UPDATE Product code123 _underscore 9starts_with_digit`;
     const tokens = new Lexer().tokenize(input);
 
@@ -335,8 +335,6 @@ $macro=sth
     ]);
   });
 
-  // todo: rename tests to shorter (handles identifiers)
-  // instead of (should handle identifiers)
   it('tokenizes valid impex table', () => {
     const input = `\
 UPDATE Product[batchmode=true];code[unique=true];supercategories(code,$contentCV)[mode=append]
@@ -702,7 +700,7 @@ $setPassword=@password[translator=de.hybris.platform.impex.jalo.translators.Conv
 
   it.todo('handles crlf and lf newlines ending');
 
-  it.todo('should handle unrecognized (stuff?)');
+  it.todo('handles unrecognized (stuff?)');
 });
 
 describe('Lexer - on real world impex', () => {
