@@ -98,7 +98,6 @@ class Lexer {
     const tokens = [];
 
     let i = 0;
-    // TODO: fix current line tracking
     let line = 1;
 
     /** @param {number} idx */
