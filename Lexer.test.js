@@ -661,6 +661,16 @@ something`;
     ]);
   });
 
+  it('tokenizes a lone @ character at start of whitespace', () => {
+    const input = '@ something';
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('@', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token(' ', 1, TOKEN_TYPE.WHITESPACE),
+      Factory.Token('something', 1, TOKEN_TYPE.IDENTIFIER),
+    ]);
+  });
+
   it.skip('handles double quotes inside modifier values', () => {
     // uses double quotes for impex modifiers
     // https://github.com/productsupcom/nemeses-sap-hybris-cloud/blob/72a0f042890fe4227dba060549505551ccd31fd6/core-customize/productdataexportaccelerator/resources/impex/projectdata_sampleConfiguration_accelerator.impex#L19
@@ -750,6 +760,42 @@ UserGroup;cockpitgroup;;;;;;;;
 ;;;;WorldpayAPMConfiguration;+;+;+;+;+;
 ;;;;WorldpayCurrencyRange;+;+;+;+;+;
 $END_USERRIGHTS;;;;;
+`;
+
+    expect(new Lexer().tokenize(input)).toMatchSnapshot();
+  });
+
+  it('tokenizes impex with userrights block with + and - signs in cell values', () => {
+    const input = `
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+
+$defaultCatalog=Default
+$defaultCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$defaultCatalog]),CatalogVersion.version[default=Staged])[default=$defaultCatalog:Staged]
+$defaultPassword=12341234
+
+INSERT_UPDATE UserGroup ; UID[unique=true]   ; groups(uid)[mode=append] ; description                  ; name
+                        ; searchmanagergroup ; employeegroup            ; Searh Profiles Manager Group ; Searh Profiles Manager Group
+
+
+$START_USERRIGHTS       ;                    ;                          ;                              ;                                  ;     ;       ;       ;       ;
+Type                    ; UID                ; MemberOfGroups           ; Password                     ; Target                           ; read; change; create; remove;
+UserGroup               ; searchmanagergroup ;                          ;                              ;                                  ;     ;       ;       ;       ;
+                        ;                    ;                          ;                              ; AbstractAsSearchProfile          ; +   ; +     ; +     ; +     ;
+                        ;                    ;                          ;                              ; AbstractAsSearchConfiguration    ; +   ; +     ; +     ; +     ;
+                        ;                    ;                          ;                              ; AbstractAsFacetConfiguration     ; +   ; +     ; +     ; +     ;
+                        ;                    ;                          ;                              ; AbstractAsBoostItemConfiguration ; +   ; +     ; +     ; +     ;
+                        ;                    ;                          ;                              ; AbstractAsBoostRuleConfiguration ; +   ; +     ; +     ; +     ;
+                        ;                    ;                          ;                              ; AsSearchProfileActivationSet     ; +   ; +     ; +     ; +     ;
+                        ;                    ;                          ;                              ; Product                          ; +   ; -     ; -     ; -     ;
+                        ;                    ;                          ;                              ; variantType                      ; +   ; -     ; -     ; -     ;
+$END_USERRIGHTS         ;                    ;                          ;                              ;                                  ;     ;       ;       ;       ;
+
+
+INSERT_UPDATE Employee ; UID[unique=true] ; password[default=$defaultPassword] ; backOfficeLoginDisabled ; groups(uid)[mode=append] ; description                  ; name
+                       ; searchmanager    ;                                    ; false                   ; searchmanagergroup       ; Search Configuration Manager ; Search Configuration Manager
 `;
 
     expect(new Lexer().tokenize(input)).toMatchSnapshot();

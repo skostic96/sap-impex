@@ -680,6 +680,2621 @@ exports[`Lexer - on real world impex tokenizes impex with userrights 1`] = `
 ]
 `;
 
+exports[`Lexer - on real world impex tokenizes impex with userrights block with + and - signs in cell values 1`] = `
+[
+  Token {
+    "line": 1,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 2,
+    "type": "COMMENT",
+    "value": "# -----------------------------------------------------------------------",
+  },
+  Token {
+    "line": 2,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 3,
+    "type": "COMMENT",
+    "value": "# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.",
+  },
+  Token {
+    "line": 3,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 4,
+    "type": "COMMENT",
+    "value": "# -----------------------------------------------------------------------",
+  },
+  Token {
+    "line": 4,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 5,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 6,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 7,
+    "type": "MACRO_REFERENCE",
+    "value": "$defaultCatalog",
+  },
+  Token {
+    "line": 7,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 7,
+    "type": "IDENTIFIER",
+    "value": "Default",
+  },
+  Token {
+    "line": 7,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 8,
+    "type": "MACRO_REFERENCE",
+    "value": "$defaultCV",
+  },
+  Token {
+    "line": 8,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": "catalogVersion",
+  },
+  Token {
+    "line": 8,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": "CatalogVersion",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": ".",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": "catalog",
+  },
+  Token {
+    "line": 8,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": "Catalog",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": ".",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": "id",
+  },
+  Token {
+    "line": 8,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": "default",
+  },
+  Token {
+    "line": 8,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 8,
+    "type": "MACRO_REFERENCE",
+    "value": "$defaultCatalog",
+  },
+  Token {
+    "line": 8,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 8,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 8,
+    "type": "COMMA",
+    "value": ",",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": "CatalogVersion",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": ".",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": "version",
+  },
+  Token {
+    "line": 8,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": "default",
+  },
+  Token {
+    "line": 8,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": "Staged",
+  },
+  Token {
+    "line": 8,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 8,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 8,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": "default",
+  },
+  Token {
+    "line": 8,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 8,
+    "type": "MACRO_REFERENCE",
+    "value": "$defaultCatalog",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": ":",
+  },
+  Token {
+    "line": 8,
+    "type": "IDENTIFIER",
+    "value": "Staged",
+  },
+  Token {
+    "line": 8,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 8,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 9,
+    "type": "MACRO_REFERENCE",
+    "value": "$defaultPassword",
+  },
+  Token {
+    "line": 9,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 9,
+    "type": "IDENTIFIER",
+    "value": "12341234",
+  },
+  Token {
+    "line": 9,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 10,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 11,
+    "type": "IDENTIFIER",
+    "value": "INSERT_UPDATE",
+  },
+  Token {
+    "line": 11,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 11,
+    "type": "IDENTIFIER",
+    "value": "UserGroup",
+  },
+  Token {
+    "line": 11,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 11,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 11,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 11,
+    "type": "IDENTIFIER",
+    "value": "UID",
+  },
+  Token {
+    "line": 11,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 11,
+    "type": "IDENTIFIER",
+    "value": "unique",
+  },
+  Token {
+    "line": 11,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 11,
+    "type": "IDENTIFIER",
+    "value": "true",
+  },
+  Token {
+    "line": 11,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 11,
+    "type": "WHITESPACE",
+    "value": "   ",
+  },
+  Token {
+    "line": 11,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 11,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 11,
+    "type": "IDENTIFIER",
+    "value": "groups",
+  },
+  Token {
+    "line": 11,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 11,
+    "type": "IDENTIFIER",
+    "value": "uid",
+  },
+  Token {
+    "line": 11,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 11,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 11,
+    "type": "IDENTIFIER",
+    "value": "mode",
+  },
+  Token {
+    "line": 11,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 11,
+    "type": "IDENTIFIER",
+    "value": "append",
+  },
+  Token {
+    "line": 11,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 11,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 11,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 11,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 11,
+    "type": "IDENTIFIER",
+    "value": "description",
+  },
+  Token {
+    "line": 11,
+    "type": "WHITESPACE",
+    "value": "                  ",
+  },
+  Token {
+    "line": 11,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 11,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 11,
+    "type": "IDENTIFIER",
+    "value": "name",
+  },
+  Token {
+    "line": 11,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 12,
+    "type": "WHITESPACE",
+    "value": "                        ",
+  },
+  Token {
+    "line": 12,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 12,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "searchmanagergroup",
+  },
+  Token {
+    "line": 12,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 12,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 12,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "employeegroup",
+  },
+  Token {
+    "line": 12,
+    "type": "WHITESPACE",
+    "value": "            ",
+  },
+  Token {
+    "line": 12,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 12,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "Searh",
+  },
+  Token {
+    "line": 12,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "Profiles",
+  },
+  Token {
+    "line": 12,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "Manager",
+  },
+  Token {
+    "line": 12,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "Group",
+  },
+  Token {
+    "line": 12,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 12,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 12,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "Searh",
+  },
+  Token {
+    "line": 12,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "Profiles",
+  },
+  Token {
+    "line": 12,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "Manager",
+  },
+  Token {
+    "line": 12,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 12,
+    "type": "IDENTIFIER",
+    "value": "Group",
+  },
+  Token {
+    "line": 12,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 13,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 14,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 15,
+    "type": "MACRO_REFERENCE",
+    "value": "$START_USERRIGHTS",
+  },
+  Token {
+    "line": 15,
+    "type": "WHITESPACE",
+    "value": "       ",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "WHITESPACE",
+    "value": "                    ",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "WHITESPACE",
+    "value": "                          ",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "WHITESPACE",
+    "value": "                              ",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "WHITESPACE",
+    "value": "                                  ",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "WHITESPACE",
+    "value": "       ",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "WHITESPACE",
+    "value": "       ",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "WHITESPACE",
+    "value": "       ",
+  },
+  Token {
+    "line": 15,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 15,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 16,
+    "type": "IDENTIFIER",
+    "value": "Type",
+  },
+  Token {
+    "line": 16,
+    "type": "WHITESPACE",
+    "value": "                    ",
+  },
+  Token {
+    "line": 16,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 16,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 16,
+    "type": "IDENTIFIER",
+    "value": "UID",
+  },
+  Token {
+    "line": 16,
+    "type": "WHITESPACE",
+    "value": "                ",
+  },
+  Token {
+    "line": 16,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 16,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 16,
+    "type": "IDENTIFIER",
+    "value": "MemberOfGroups",
+  },
+  Token {
+    "line": 16,
+    "type": "WHITESPACE",
+    "value": "           ",
+  },
+  Token {
+    "line": 16,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 16,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 16,
+    "type": "IDENTIFIER",
+    "value": "Password",
+  },
+  Token {
+    "line": 16,
+    "type": "WHITESPACE",
+    "value": "                     ",
+  },
+  Token {
+    "line": 16,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 16,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 16,
+    "type": "IDENTIFIER",
+    "value": "Target",
+  },
+  Token {
+    "line": 16,
+    "type": "WHITESPACE",
+    "value": "                           ",
+  },
+  Token {
+    "line": 16,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 16,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 16,
+    "type": "IDENTIFIER",
+    "value": "read",
+  },
+  Token {
+    "line": 16,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 16,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 16,
+    "type": "IDENTIFIER",
+    "value": "change",
+  },
+  Token {
+    "line": 16,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 16,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 16,
+    "type": "IDENTIFIER",
+    "value": "create",
+  },
+  Token {
+    "line": 16,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 16,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 16,
+    "type": "IDENTIFIER",
+    "value": "remove",
+  },
+  Token {
+    "line": 16,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 16,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 17,
+    "type": "IDENTIFIER",
+    "value": "UserGroup",
+  },
+  Token {
+    "line": 17,
+    "type": "WHITESPACE",
+    "value": "               ",
+  },
+  Token {
+    "line": 17,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 17,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 17,
+    "type": "IDENTIFIER",
+    "value": "searchmanagergroup",
+  },
+  Token {
+    "line": 17,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 17,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 17,
+    "type": "WHITESPACE",
+    "value": "                          ",
+  },
+  Token {
+    "line": 17,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 17,
+    "type": "WHITESPACE",
+    "value": "                              ",
+  },
+  Token {
+    "line": 17,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 17,
+    "type": "WHITESPACE",
+    "value": "                                  ",
+  },
+  Token {
+    "line": 17,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 17,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 17,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 17,
+    "type": "WHITESPACE",
+    "value": "       ",
+  },
+  Token {
+    "line": 17,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 17,
+    "type": "WHITESPACE",
+    "value": "       ",
+  },
+  Token {
+    "line": 17,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 17,
+    "type": "WHITESPACE",
+    "value": "       ",
+  },
+  Token {
+    "line": 17,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 17,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 18,
+    "type": "WHITESPACE",
+    "value": "                        ",
+  },
+  Token {
+    "line": 18,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 18,
+    "type": "WHITESPACE",
+    "value": "                    ",
+  },
+  Token {
+    "line": 18,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 18,
+    "type": "WHITESPACE",
+    "value": "                          ",
+  },
+  Token {
+    "line": 18,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 18,
+    "type": "WHITESPACE",
+    "value": "                              ",
+  },
+  Token {
+    "line": 18,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 18,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 18,
+    "type": "IDENTIFIER",
+    "value": "AbstractAsSearchProfile",
+  },
+  Token {
+    "line": 18,
+    "type": "WHITESPACE",
+    "value": "          ",
+  },
+  Token {
+    "line": 18,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 18,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 18,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 18,
+    "type": "WHITESPACE",
+    "value": "   ",
+  },
+  Token {
+    "line": 18,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 18,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 18,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 18,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 18,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 18,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 18,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 18,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 18,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 18,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 18,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 18,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 18,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 18,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 19,
+    "type": "WHITESPACE",
+    "value": "                        ",
+  },
+  Token {
+    "line": 19,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 19,
+    "type": "WHITESPACE",
+    "value": "                    ",
+  },
+  Token {
+    "line": 19,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 19,
+    "type": "WHITESPACE",
+    "value": "                          ",
+  },
+  Token {
+    "line": 19,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 19,
+    "type": "WHITESPACE",
+    "value": "                              ",
+  },
+  Token {
+    "line": 19,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 19,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 19,
+    "type": "IDENTIFIER",
+    "value": "AbstractAsSearchConfiguration",
+  },
+  Token {
+    "line": 19,
+    "type": "WHITESPACE",
+    "value": "    ",
+  },
+  Token {
+    "line": 19,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 19,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 19,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 19,
+    "type": "WHITESPACE",
+    "value": "   ",
+  },
+  Token {
+    "line": 19,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 19,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 19,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 19,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 19,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 19,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 19,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 19,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 19,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 19,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 19,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 19,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 19,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 19,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 20,
+    "type": "WHITESPACE",
+    "value": "                        ",
+  },
+  Token {
+    "line": 20,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 20,
+    "type": "WHITESPACE",
+    "value": "                    ",
+  },
+  Token {
+    "line": 20,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 20,
+    "type": "WHITESPACE",
+    "value": "                          ",
+  },
+  Token {
+    "line": 20,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 20,
+    "type": "WHITESPACE",
+    "value": "                              ",
+  },
+  Token {
+    "line": 20,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 20,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 20,
+    "type": "IDENTIFIER",
+    "value": "AbstractAsFacetConfiguration",
+  },
+  Token {
+    "line": 20,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 20,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 20,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 20,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 20,
+    "type": "WHITESPACE",
+    "value": "   ",
+  },
+  Token {
+    "line": 20,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 20,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 20,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 20,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 20,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 20,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 20,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 20,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 20,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 20,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 20,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 20,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 20,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 20,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 21,
+    "type": "WHITESPACE",
+    "value": "                        ",
+  },
+  Token {
+    "line": 21,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 21,
+    "type": "WHITESPACE",
+    "value": "                    ",
+  },
+  Token {
+    "line": 21,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 21,
+    "type": "WHITESPACE",
+    "value": "                          ",
+  },
+  Token {
+    "line": 21,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 21,
+    "type": "WHITESPACE",
+    "value": "                              ",
+  },
+  Token {
+    "line": 21,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 21,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 21,
+    "type": "IDENTIFIER",
+    "value": "AbstractAsBoostItemConfiguration",
+  },
+  Token {
+    "line": 21,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 21,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 21,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 21,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 21,
+    "type": "WHITESPACE",
+    "value": "   ",
+  },
+  Token {
+    "line": 21,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 21,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 21,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 21,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 21,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 21,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 21,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 21,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 21,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 21,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 21,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 21,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 21,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 21,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 22,
+    "type": "WHITESPACE",
+    "value": "                        ",
+  },
+  Token {
+    "line": 22,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 22,
+    "type": "WHITESPACE",
+    "value": "                    ",
+  },
+  Token {
+    "line": 22,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 22,
+    "type": "WHITESPACE",
+    "value": "                          ",
+  },
+  Token {
+    "line": 22,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 22,
+    "type": "WHITESPACE",
+    "value": "                              ",
+  },
+  Token {
+    "line": 22,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 22,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 22,
+    "type": "IDENTIFIER",
+    "value": "AbstractAsBoostRuleConfiguration",
+  },
+  Token {
+    "line": 22,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 22,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 22,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 22,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 22,
+    "type": "WHITESPACE",
+    "value": "   ",
+  },
+  Token {
+    "line": 22,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 22,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 22,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 22,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 22,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 22,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 22,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 22,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 22,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 22,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 22,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 22,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 22,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 22,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 23,
+    "type": "WHITESPACE",
+    "value": "                        ",
+  },
+  Token {
+    "line": 23,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 23,
+    "type": "WHITESPACE",
+    "value": "                    ",
+  },
+  Token {
+    "line": 23,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 23,
+    "type": "WHITESPACE",
+    "value": "                          ",
+  },
+  Token {
+    "line": 23,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 23,
+    "type": "WHITESPACE",
+    "value": "                              ",
+  },
+  Token {
+    "line": 23,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 23,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 23,
+    "type": "IDENTIFIER",
+    "value": "AsSearchProfileActivationSet",
+  },
+  Token {
+    "line": 23,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 23,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 23,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 23,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 23,
+    "type": "WHITESPACE",
+    "value": "   ",
+  },
+  Token {
+    "line": 23,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 23,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 23,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 23,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 23,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 23,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 23,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 23,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 23,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 23,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 23,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 23,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 23,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 23,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 24,
+    "type": "WHITESPACE",
+    "value": "                        ",
+  },
+  Token {
+    "line": 24,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 24,
+    "type": "WHITESPACE",
+    "value": "                    ",
+  },
+  Token {
+    "line": 24,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 24,
+    "type": "WHITESPACE",
+    "value": "                          ",
+  },
+  Token {
+    "line": 24,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 24,
+    "type": "WHITESPACE",
+    "value": "                              ",
+  },
+  Token {
+    "line": 24,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 24,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 24,
+    "type": "IDENTIFIER",
+    "value": "Product",
+  },
+  Token {
+    "line": 24,
+    "type": "WHITESPACE",
+    "value": "                          ",
+  },
+  Token {
+    "line": 24,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 24,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 24,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 24,
+    "type": "WHITESPACE",
+    "value": "   ",
+  },
+  Token {
+    "line": 24,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 24,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 24,
+    "type": "IDENTIFIER",
+    "value": "-",
+  },
+  Token {
+    "line": 24,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 24,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 24,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 24,
+    "type": "IDENTIFIER",
+    "value": "-",
+  },
+  Token {
+    "line": 24,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 24,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 24,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 24,
+    "type": "IDENTIFIER",
+    "value": "-",
+  },
+  Token {
+    "line": 24,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 24,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 24,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 25,
+    "type": "WHITESPACE",
+    "value": "                        ",
+  },
+  Token {
+    "line": 25,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 25,
+    "type": "WHITESPACE",
+    "value": "                    ",
+  },
+  Token {
+    "line": 25,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 25,
+    "type": "WHITESPACE",
+    "value": "                          ",
+  },
+  Token {
+    "line": 25,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 25,
+    "type": "WHITESPACE",
+    "value": "                              ",
+  },
+  Token {
+    "line": 25,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 25,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 25,
+    "type": "IDENTIFIER",
+    "value": "variantType",
+  },
+  Token {
+    "line": 25,
+    "type": "WHITESPACE",
+    "value": "                      ",
+  },
+  Token {
+    "line": 25,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 25,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 25,
+    "type": "IDENTIFIER",
+    "value": "+",
+  },
+  Token {
+    "line": 25,
+    "type": "WHITESPACE",
+    "value": "   ",
+  },
+  Token {
+    "line": 25,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 25,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 25,
+    "type": "IDENTIFIER",
+    "value": "-",
+  },
+  Token {
+    "line": 25,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 25,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 25,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 25,
+    "type": "IDENTIFIER",
+    "value": "-",
+  },
+  Token {
+    "line": 25,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 25,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 25,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 25,
+    "type": "IDENTIFIER",
+    "value": "-",
+  },
+  Token {
+    "line": 25,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 25,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 25,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 26,
+    "type": "MACRO_REFERENCE",
+    "value": "$END_USERRIGHTS",
+  },
+  Token {
+    "line": 26,
+    "type": "WHITESPACE",
+    "value": "         ",
+  },
+  Token {
+    "line": 26,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 26,
+    "type": "WHITESPACE",
+    "value": "                    ",
+  },
+  Token {
+    "line": 26,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 26,
+    "type": "WHITESPACE",
+    "value": "                          ",
+  },
+  Token {
+    "line": 26,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 26,
+    "type": "WHITESPACE",
+    "value": "                              ",
+  },
+  Token {
+    "line": 26,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 26,
+    "type": "WHITESPACE",
+    "value": "                                  ",
+  },
+  Token {
+    "line": 26,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 26,
+    "type": "WHITESPACE",
+    "value": "     ",
+  },
+  Token {
+    "line": 26,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 26,
+    "type": "WHITESPACE",
+    "value": "       ",
+  },
+  Token {
+    "line": 26,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 26,
+    "type": "WHITESPACE",
+    "value": "       ",
+  },
+  Token {
+    "line": 26,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 26,
+    "type": "WHITESPACE",
+    "value": "       ",
+  },
+  Token {
+    "line": 26,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 26,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 27,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 28,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": "INSERT_UPDATE",
+  },
+  Token {
+    "line": 29,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": "Employee",
+  },
+  Token {
+    "line": 29,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 29,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 29,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": "UID",
+  },
+  Token {
+    "line": 29,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": "unique",
+  },
+  Token {
+    "line": 29,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": "true",
+  },
+  Token {
+    "line": 29,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 29,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 29,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 29,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": "password",
+  },
+  Token {
+    "line": 29,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": "default",
+  },
+  Token {
+    "line": 29,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 29,
+    "type": "MACRO_REFERENCE",
+    "value": "$defaultPassword",
+  },
+  Token {
+    "line": 29,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 29,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 29,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 29,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": "backOfficeLoginDisabled",
+  },
+  Token {
+    "line": 29,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 29,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 29,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": "groups",
+  },
+  Token {
+    "line": 29,
+    "type": "LPAREN",
+    "value": "(",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": "uid",
+  },
+  Token {
+    "line": 29,
+    "type": "RPAREN",
+    "value": ")",
+  },
+  Token {
+    "line": 29,
+    "type": "LBRACKET",
+    "value": "[",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": "mode",
+  },
+  Token {
+    "line": 29,
+    "type": "EQUALS",
+    "value": "=",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": "append",
+  },
+  Token {
+    "line": 29,
+    "type": "RBRACKET",
+    "value": "]",
+  },
+  Token {
+    "line": 29,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 29,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 29,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": "description",
+  },
+  Token {
+    "line": 29,
+    "type": "WHITESPACE",
+    "value": "                  ",
+  },
+  Token {
+    "line": 29,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 29,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 29,
+    "type": "IDENTIFIER",
+    "value": "name",
+  },
+  Token {
+    "line": 29,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+  Token {
+    "line": 30,
+    "type": "WHITESPACE",
+    "value": "                       ",
+  },
+  Token {
+    "line": 30,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 30,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 30,
+    "type": "IDENTIFIER",
+    "value": "searchmanager",
+  },
+  Token {
+    "line": 30,
+    "type": "WHITESPACE",
+    "value": "    ",
+  },
+  Token {
+    "line": 30,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 30,
+    "type": "WHITESPACE",
+    "value": "                                    ",
+  },
+  Token {
+    "line": 30,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 30,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 30,
+    "type": "IDENTIFIER",
+    "value": "false",
+  },
+  Token {
+    "line": 30,
+    "type": "WHITESPACE",
+    "value": "                   ",
+  },
+  Token {
+    "line": 30,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 30,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 30,
+    "type": "IDENTIFIER",
+    "value": "searchmanagergroup",
+  },
+  Token {
+    "line": 30,
+    "type": "WHITESPACE",
+    "value": "       ",
+  },
+  Token {
+    "line": 30,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 30,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 30,
+    "type": "IDENTIFIER",
+    "value": "Search",
+  },
+  Token {
+    "line": 30,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 30,
+    "type": "IDENTIFIER",
+    "value": "Configuration",
+  },
+  Token {
+    "line": 30,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 30,
+    "type": "IDENTIFIER",
+    "value": "Manager",
+  },
+  Token {
+    "line": 30,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 30,
+    "type": "SEMICOLON",
+    "value": ";",
+  },
+  Token {
+    "line": 30,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 30,
+    "type": "IDENTIFIER",
+    "value": "Search",
+  },
+  Token {
+    "line": 30,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 30,
+    "type": "IDENTIFIER",
+    "value": "Configuration",
+  },
+  Token {
+    "line": 30,
+    "type": "WHITESPACE",
+    "value": " ",
+  },
+  Token {
+    "line": 30,
+    "type": "IDENTIFIER",
+    "value": "Manager",
+  },
+  Token {
+    "line": 30,
+    "type": "NEWLINE",
+    "value": "<NL>",
+  },
+]
+`;
+
 exports[`Lexer - on real world impex tokenizes modifier with double quotes 1`] = `
 [
   Token {
