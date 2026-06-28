@@ -1,7 +1,7 @@
 const { Lexer, Factory, TOKEN_TYPE, TOKEN } = require('./Lexer');
 
 describe('Lexer', () => {
-  it('should parse macros correctly', () => {
+  it('parses macros correctly', () => {
     const macrosImpex = `
 "$mediaPrefix/h12/banner.png"
 
@@ -19,10 +19,10 @@ describe('Lexer', () => {
       //
       Factory.Token('<NL>', 1, TOKEN_TYPE.NEWLINE),
       //
-      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 2, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token('$mediaPrefix', 2, TOKEN_TYPE.MACRO_REFERENCE),
       Factory.Token('/h12/banner.png', 2, TOKEN_TYPE.IDENTIFIER),
-      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 2, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token('<NL>', 2, TOKEN_TYPE.NEWLINE),
       //
       Factory.Token('<NL>', 3, TOKEN_TYPE.NEWLINE),
@@ -30,10 +30,10 @@ describe('Lexer', () => {
       Factory.Token('# One string on a line', 4, TOKEN_TYPE.COMMENT),
       Factory.Token('<NL>', 4, TOKEN_TYPE.NEWLINE),
       //
-      Factory.Token('"', 5, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 5, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token('$mediaPrefix', 5, TOKEN_TYPE.MACRO_REFERENCE),
       Factory.Token('/h12/banner-secondary.png', 5, TOKEN_TYPE.IDENTIFIER),
-      Factory.Token('"', 5, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 5, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token('<NL>', 5, TOKEN_TYPE.NEWLINE),
       //
       Factory.Token('<NL>', 6, TOKEN_TYPE.NEWLINE),
@@ -45,11 +45,11 @@ describe('Lexer', () => {
       ),
       Factory.Token('<NL>', 7, TOKEN_TYPE.NEWLINE),
       //
-      Factory.Token('"', 8, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 8, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token('Homepage Banner Slot', 8, TOKEN_TYPE.IDENTIFIER),
-      Factory.Token('"', 8, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 8, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token(' ', 8, TOKEN_TYPE.WHITESPACE),
-      Factory.Token('"', 8, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 8, TOKEN_TYPE.DOUBLE_QUOTE),
       // should parse macro names containing dots and dashes and numbers
       Factory.Token(
         '$2mediaP2refix.something-else.property',
@@ -57,18 +57,18 @@ describe('Lexer', () => {
         TOKEN_TYPE.MACRO_REFERENCE,
       ),
       Factory.Token('/h12/banner-secondary.png', 8, TOKEN_TYPE.IDENTIFIER),
-      Factory.Token('"', 8, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 8, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token('<NL>', 8, TOKEN_TYPE.NEWLINE),
       //
       Factory.Token('<NL>', 9, TOKEN_TYPE.NEWLINE),
       //
-      Factory.Token('"', 10, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 10, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token('something', 10, TOKEN_TYPE.IDENTIFIER),
-      Factory.Token('"', 10, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 10, TOKEN_TYPE.DOUBLE_QUOTE),
     ]);
   });
 
-  it('should handle single double quote containing newlines', () => {
+  it('handles double quote containing newlines', () => {
     const input = `"$mediaPrefix/line one
 line two
 $another.macro-ref/tail"`;
@@ -77,16 +77,68 @@ $another.macro-ref/tail"`;
 
     expect(tokens).toEqual([
       //
-      Factory.Token('"', 1, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token('$mediaPrefix', 1, TOKEN_TYPE.MACRO_REFERENCE),
       Factory.Token('/line one\nline two\n', 1, TOKEN_TYPE.IDENTIFIER),
       Factory.Token('$another.macro-ref', 1, TOKEN_TYPE.MACRO_REFERENCE),
       Factory.Token('/tail', 1, TOKEN_TYPE.IDENTIFIER),
-      Factory.Token('"', 1, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
     ]);
   });
 
-  it('should handle escaped newline outside of comment', () => {
+  it('handles basic single quotes', () => {
+    const input = `'some text'`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token("'", 1, TOKEN_TYPE.SINGLE_QUOTE),
+      Factory.Token('some text', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token("'", 1, TOKEN_TYPE.SINGLE_QUOTE),
+    ]);
+  });
+
+  it('handles double quote inside single quotes', () => {
+    const input = `'some " quote "something"'`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token("'", 1, TOKEN_TYPE.SINGLE_QUOTE),
+      Factory.Token('some " quote "something"', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token("'", 1, TOKEN_TYPE.SINGLE_QUOTE),
+    ]);
+  });
+
+  it('handles escaping in single quotes', () => {
+    const input = `'some '' escaped '''`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token("'", 1, TOKEN_TYPE.SINGLE_QUOTE),
+      Factory.Token("some '' escaped ''", 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token("'", 1, TOKEN_TYPE.SINGLE_QUOTE),
+    ]);
+  });
+
+  it('tokenizes macros in single quotes', () => {
+    const input = `'some $macro quote'`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token("'", 1, TOKEN_TYPE.SINGLE_QUOTE),
+      Factory.Token('some ', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('$macro', 1, TOKEN_TYPE.MACRO_REFERENCE),
+      Factory.Token(' quote', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token("'", 1, TOKEN_TYPE.SINGLE_QUOTE),
+    ]);
+  });
+
+  it('tokenizes lone $ as identifier in single quotes', () => {
+    const input = `'some $ not macro quote'`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token("'", 1, TOKEN_TYPE.SINGLE_QUOTE),
+      Factory.Token('some $ not macro quote', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token("'", 1, TOKEN_TYPE.SINGLE_QUOTE),
+    ]);
+  });
+
+  it('handles escaped newline outside of comment', () => {
     const input = `
 "line one"\
 "line two"
@@ -97,16 +149,16 @@ $another.macro-ref/tail"`;
       //
       Factory.Token('<NL>', 1, TOKEN_TYPE.NEWLINE),
       //
-      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 2, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token('line one""line two', 2, TOKEN_TYPE.IDENTIFIER),
-      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 2, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token('<NL>', 2, TOKEN_TYPE.NEWLINE),
       //
       Factory.Token('    ', 3, TOKEN_TYPE.WHITESPACE),
     ]);
   });
 
-  it('should handle comment after macro, quotes', () => {
+  it('handles comment after macro, quotes', () => {
     const input = `\
 $macro=definition #some comment here
 "a quote" #some comment here
@@ -123,26 +175,107 @@ newline" # comment too`;
       Factory.Token('#some comment here', 1, TOKEN_TYPE.COMMENT),
       Factory.Token('<NL>', 1, TOKEN_TYPE.NEWLINE),
       //
-      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 2, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token('a quote', 2, TOKEN_TYPE.IDENTIFIER),
-      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 2, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token(' ', 2, TOKEN_TYPE.WHITESPACE),
       Factory.Token('#some comment here', 2, TOKEN_TYPE.COMMENT),
       Factory.Token('<NL>', 2, TOKEN_TYPE.NEWLINE),
       //
-      Factory.Token('"', 3, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 3, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token(
         'a quote here #confuse lexer\nnewline',
         3,
         TOKEN_TYPE.IDENTIFIER,
       ),
-      Factory.Token('"', 3, TOKEN_TYPE.DQUOTE),
-      Factory.Token(' ', 3, TOKEN_TYPE.WHITESPACE),
-      Factory.Token('# comment too', 3, TOKEN_TYPE.COMMENT),
+      Factory.Token('"', 3, TOKEN_TYPE.DOUBLE_QUOTE),
+      //
+      Factory.Token(' ', 4, TOKEN_TYPE.WHITESPACE),
+      Factory.Token('# comment too', 4, TOKEN_TYPE.COMMENT),
     ]);
   });
 
-  it('should handle script lines', () => {
+  it('reflects newlines consumed inside the previous quote', () => {
+    const input = `"a\nb"\n"c\nd"
+
+$macro=sth
+`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
+      Factory.Token('a\nb', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
+      //
+      Factory.Token(TOKEN.NEWLINE, 2, TOKEN_TYPE.NEWLINE),
+      //
+      Factory.Token('"', 3, TOKEN_TYPE.DOUBLE_QUOTE),
+      Factory.Token('c\nd', 3, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 3, TOKEN_TYPE.DOUBLE_QUOTE),
+      //
+      Factory.Token(TOKEN.NEWLINE, 4, TOKEN_TYPE.NEWLINE),
+      //
+      Factory.Token(TOKEN.NEWLINE, 5, TOKEN_TYPE.NEWLINE),
+      //
+      Factory.Token('$macro', 6, TOKEN_TYPE.MACRO_REFERENCE),
+      Factory.Token('=', 6, TOKEN_TYPE.EQUALS),
+      Factory.Token('sth', 6, TOKEN_TYPE.IDENTIFIER),
+      //
+      Factory.Token(TOKEN.NEWLINE, 6, TOKEN_TYPE.NEWLINE),
+    ]);
+  });
+
+  it.each([
+    // ---
+    {
+      endOfLineType: 'LF',
+      newlineChar: '\n',
+      quoteChar: '"',
+      quoteType: TOKEN_TYPE.DOUBLE_QUOTE,
+    },
+    {
+      endOfLineType: 'CR',
+      newlineChar: '\r',
+      quoteChar: '"',
+      quoteType: TOKEN_TYPE.DOUBLE_QUOTE,
+    },
+    {
+      endOfLineType: 'CRLF',
+      newlineChar: '\r\n',
+      quoteChar: '"',
+      quoteType: TOKEN_TYPE.DOUBLE_QUOTE,
+    },
+    // ---
+    {
+      endOfLineType: 'LF',
+      newlineChar: '\n',
+      quoteChar: "'",
+      quoteType: TOKEN_TYPE.SINGLE_QUOTE,
+    },
+    {
+      endOfLineType: 'CR',
+      newlineChar: '\r',
+      quoteChar: "'",
+      quoteType: TOKEN_TYPE.SINGLE_QUOTE,
+    },
+    {
+      endOfLineType: 'CRLF',
+      newlineChar: '\r\n',
+      quoteChar: "'",
+      quoteType: TOKEN_TYPE.SINGLE_QUOTE,
+    },
+  ])(
+    'handles line tracking correctly on multiline quote: [ end of line type - $endOfLineType, quote: $quoteType ]',
+    ({ endOfLineType, newlineChar, quoteChar, quoteType }) => {
+      const input = `${quoteChar}foo${newlineChar}bar${quoteChar}`;
+      expect(new Lexer().tokenize(input)).toEqual([
+        Factory.Token(quoteChar, 1, quoteType),
+        Factory.Token(`foo${newlineChar}bar`, 1, TOKEN_TYPE.IDENTIFIER),
+        Factory.Token(quoteChar, 1, quoteType),
+      ]);
+    },
+  );
+
+  it('handles script lines', () => {
     const input = `\
 #% impex.enableCodeExecution(true);
 #% if: condition
@@ -171,7 +304,7 @@ newline" # comment too`;
     ]);
   });
 
-  it('should handle structural tokens', () => {
+  it('handles structural tokens', () => {
     const tokens = new Lexer().tokenize(`()[]=,;`);
 
     expect(tokens).toEqual([
@@ -185,7 +318,7 @@ newline" # comment too`;
     ]);
   });
 
-  it('should handle identifiers', () => {
+  it('handles identifiers', () => {
     const input = `INSERT_UPDATE Product code123 _underscore 9starts_with_digit`;
     const tokens = new Lexer().tokenize(input);
 
@@ -202,8 +335,6 @@ newline" # comment too`;
     ]);
   });
 
-  // todo: rename tests to shorter (handles identifiers)
-  // instead of (should handle identifiers)
   it('tokenizes valid impex table', () => {
     const input = `\
 UPDATE Product[batchmode=true];code[unique=true];supercategories(code,$contentCV)[mode=append]
@@ -242,7 +373,6 @@ UPDATE Product[batchmode=true];code[unique=true];supercategories(code,$contentCV
       Factory.Token(';', 2, TOKEN_TYPE.SEMICOLON),
       Factory.Token('PROD', 2, TOKEN_TYPE.IDENTIFIER),
       Factory.Token('-', 2, TOKEN_TYPE.IDENTIFIER),
-      // TODO: Fix not parsing - characters
       Factory.Token('001', 2, TOKEN_TYPE.IDENTIFIER),
       Factory.Token(';', 2, TOKEN_TYPE.SEMICOLON),
       Factory.Token('newCategory', 2, TOKEN_TYPE.IDENTIFIER),
@@ -259,9 +389,9 @@ $macro=stuff "quote" @????`; // This no EOF newline is critical to this test
       Factory.Token('=', 2, TOKEN_TYPE.EQUALS),
       Factory.Token('stuff', 2, TOKEN_TYPE.IDENTIFIER),
       Factory.Token(' ', 2, TOKEN_TYPE.WHITESPACE),
-      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 2, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token('quote', 2, TOKEN_TYPE.IDENTIFIER),
-      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 2, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token(' ', 2, TOKEN_TYPE.WHITESPACE),
       Factory.Token('@????', 2, TOKEN_TYPE.IDENTIFIER),
     ]);
@@ -278,9 +408,9 @@ $macro=stuff "quote" @????
       Factory.Token('=', 2, TOKEN_TYPE.EQUALS),
       Factory.Token('stuff', 2, TOKEN_TYPE.IDENTIFIER),
       Factory.Token(' ', 2, TOKEN_TYPE.WHITESPACE),
-      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 2, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token('quote', 2, TOKEN_TYPE.IDENTIFIER),
-      Factory.Token('"', 2, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 2, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token(' ', 2, TOKEN_TYPE.WHITESPACE),
       Factory.Token('@????', 2, TOKEN_TYPE.IDENTIFIER),
       Factory.Token(TOKEN.NEWLINE, 2, TOKEN_TYPE.NEWLINE),
@@ -353,9 +483,9 @@ $macro=stuff "quote" @????
     const input = `?"quote"`;
     expect(new Lexer().tokenize(input)).toEqual([
       Factory.Token('?', 1, TOKEN_TYPE.IDENTIFIER),
-      Factory.Token('"', 1, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
       Factory.Token('quote', 1, TOKEN_TYPE.IDENTIFIER),
-      Factory.Token('"', 1, TOKEN_TYPE.DQUOTE),
+      Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
     ]);
   });
 
@@ -441,9 +571,9 @@ something`;
       name: 'quote',
       trigger: '"quote"',
       expected: [
-        Factory.Token('"', 1, TOKEN_TYPE.DQUOTE),
+        Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
         Factory.Token('quote', 1, TOKEN_TYPE.IDENTIFIER),
-        Factory.Token('"', 1, TOKEN_TYPE.DQUOTE),
+        Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
       ],
     },
     {
@@ -473,7 +603,71 @@ something`;
     },
   );
 
-  it.todo('tokenizes real life impex files');
+  it('correctly parses characters immediately following a macro inside quotes', () => {
+    // This input specifically tests that the lexer does NOT skip
+    // the ':' after $macro1, and does NOT skip the closing "'" after $macro2.
+    const input = `'$macro1:$macro2'`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token("'", 1, TOKEN_TYPE.SINGLE_QUOTE),
+      Factory.Token('$macro1', 1, TOKEN_TYPE.MACRO_REFERENCE),
+      Factory.Token(':', 1, TOKEN_TYPE.IDENTIFIER), // Fails if missing continue;
+      Factory.Token('$macro2', 1, TOKEN_TYPE.MACRO_REFERENCE),
+      Factory.Token("'", 1, TOKEN_TYPE.SINGLE_QUOTE), // Fails if missing continue;
+    ]);
+  });
+
+  it('correctly handles a lone dollar sign immediately before a closing quote', () => {
+    const input = `"$"`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
+      Factory.Token('$', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
+    ]);
+  });
+
+  it('correctly handles a lone dollar sign followed by a non-macro character inside quotes', () => {
+    const input = `"$ "`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
+      Factory.Token('$ ', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('"', 1, TOKEN_TYPE.DOUBLE_QUOTE),
+    ]);
+  });
+
+  it('escapes only newline with preceding backslash, which is kept otherwise', () => {
+    const input = `\\r\\
+something`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('\\', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('r', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('something', 2, TOKEN_TYPE.IDENTIFIER),
+    ]);
+  });
+
+  it('flushes content before and after escaped newline', () => {
+    const input = `????\\
+?????something`;
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('????', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('?????', 2, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token('something', 2, TOKEN_TYPE.IDENTIFIER),
+    ]);
+  });
+
+  it('tokenizes a lone @ character at start of whitespace', () => {
+    const input = '@ something';
+
+    expect(new Lexer().tokenize(input)).toEqual([
+      Factory.Token('@', 1, TOKEN_TYPE.IDENTIFIER),
+      Factory.Token(' ', 1, TOKEN_TYPE.WHITESPACE),
+      Factory.Token('something', 1, TOKEN_TYPE.IDENTIFIER),
+    ]);
+  });
 
   it.skip('handles double quotes inside modifier values', () => {
     // uses double quotes for impex modifiers
@@ -506,5 +700,102 @@ $setPassword=@password[translator=de.hybris.platform.impex.jalo.translators.Conv
 
   it.todo('handles crlf and lf newlines ending');
 
-  it.todo('should handle unrecognized (stuff?)');
+  it.todo('handles unrecognized (stuff?)');
+});
+
+describe('Lexer - on real world impex', () => {
+  it('tokenizes modifier with double quotes', () => {
+    const input = `
+INSERT_UPDATE AttributeFieldConfig;code[unique=true];fieldHeader;indexedAttributeDescriptorsInternal;fieldFormatterBean;fieldExtractorBean;productType(code);productCategory(catalogVersion(catalog(id),version),code)
+;attr_additional_image;additional_image;Product.galleryImages[0].medias[0];acceleratorMediaFieldFormatter;attributeFieldExtractorStrategy;Product;
+;attr_product_image;product_image;Product.picture;acceleratorMediaFieldFormatter;attributeFieldExtractorStrategy;Product;
+;attr_age_group;age_group;Product.supercategories;acceleratorAgeGroupFormatter;attributeFieldExtractorStrategy;Product;
+
+INSERT_UPDATE SelfReferenceFieldConfig;code[unique=true];fieldHeader;fieldFormatterBean;fieldExtractorBean;productType(code);productCategory(catalogVersion(catalog(id),version),code)
+;self_product_url;product_url;acceleratorProductFieldFormatter;selfReferenceExtractorStrategy;Product;
+
+INSERT_UPDATE CSVExportFieldConfigRelation;source(code)[unique=true];target(code)[unique=true]
+;minimal;attr_product_image
+;minimal;self_product_url
+;ideal;attr_product_image
+;ideal;self_product_url
+;ideal;attr_age_group
+;ideal;attr_additional_image
+
+INSERT_UPDATE URLResolutionProperties;code[unique=true];encodingAttributes;subPath;secure;queryParameters;baseSite(uid)
+;secure_electr;;;true;;electronics
+
+UPDATE CSVExportCronJob;code[unique=true];urlResolutionProperties(code)[default="secure_electr"];
+;ProductsupApiExport;
+;ProductsupApiDeltaExport;
+;ProductsupApiIncrementalExport;
+
+# Separate import for testing purposes because default catalog has no products. If this fails however, it won't stop the 
+# secure_electr from being added, thats why it's split.
+UPDATE CSVExportCronJob;code[unique=true];catalogVersion(catalog(id),version);
+;ProductsupApiExport;apparelProductCatalog:Online;
+;ProductsupApiDeltaExport;apparelProductCatalog:Online;
+;ProductsupApiIncrementalExport;apparelProductCatalog:Online;
+`;
+
+    expect(new Lexer().tokenize(input)).toMatchSnapshot();
+  });
+
+  it('tokenizes impex with userrights', () => {
+    const input = `
+$regulargroup=regulargroup
+$customergroup=customergroup
+
+$passwordEncoding=md5
+$defaultPassword=12341234
+$setPassword=@password[translator=de.hybris.platform.impex.jalo.translators.ConvertPlaintextToEncodedUserPasswordTranslator][default='$passwordEncoding:$defaultPassword']
+
+
+
+$START_USERRIGHTS;;;;;;;;;
+Type;UID;MemberOfGroups;Password;Target;read;change;create;remove;change_perm
+UserGroup;cockpitgroup;;;;;;;;
+;;;;WorldpayAPMConfiguration;+;+;+;+;+;
+;;;;WorldpayCurrencyRange;+;+;+;+;+;
+$END_USERRIGHTS;;;;;
+`;
+
+    expect(new Lexer().tokenize(input)).toMatchSnapshot();
+  });
+
+  it('tokenizes impex with userrights block with + and - signs in cell values', () => {
+    const input = `
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+
+$defaultCatalog=Default
+$defaultCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$defaultCatalog]),CatalogVersion.version[default=Staged])[default=$defaultCatalog:Staged]
+$defaultPassword=12341234
+
+INSERT_UPDATE UserGroup ; UID[unique=true]   ; groups(uid)[mode=append] ; description                  ; name
+                        ; searchmanagergroup ; employeegroup            ; Searh Profiles Manager Group ; Searh Profiles Manager Group
+
+
+$START_USERRIGHTS       ;                    ;                          ;                              ;                                  ;     ;       ;       ;       ;
+Type                    ; UID                ; MemberOfGroups           ; Password                     ; Target                           ; read; change; create; remove;
+UserGroup               ; searchmanagergroup ;                          ;                              ;                                  ;     ;       ;       ;       ;
+                        ;                    ;                          ;                              ; AbstractAsSearchProfile          ; +   ; +     ; +     ; +     ;
+                        ;                    ;                          ;                              ; AbstractAsSearchConfiguration    ; +   ; +     ; +     ; +     ;
+                        ;                    ;                          ;                              ; AbstractAsFacetConfiguration     ; +   ; +     ; +     ; +     ;
+                        ;                    ;                          ;                              ; AbstractAsBoostItemConfiguration ; +   ; +     ; +     ; +     ;
+                        ;                    ;                          ;                              ; AbstractAsBoostRuleConfiguration ; +   ; +     ; +     ; +     ;
+                        ;                    ;                          ;                              ; AsSearchProfileActivationSet     ; +   ; +     ; +     ; +     ;
+                        ;                    ;                          ;                              ; Product                          ; +   ; -     ; -     ; -     ;
+                        ;                    ;                          ;                              ; variantType                      ; +   ; -     ; -     ; -     ;
+$END_USERRIGHTS         ;                    ;                          ;                              ;                                  ;     ;       ;       ;       ;
+
+
+INSERT_UPDATE Employee ; UID[unique=true] ; password[default=$defaultPassword] ; backOfficeLoginDisabled ; groups(uid)[mode=append] ; description                  ; name
+                       ; searchmanager    ;                                    ; false                   ; searchmanagergroup       ; Search Configuration Manager ; Search Configuration Manager
+`;
+
+    expect(new Lexer().tokenize(input)).toMatchSnapshot();
+  });
 });

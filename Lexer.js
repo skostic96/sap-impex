@@ -22,6 +22,8 @@ const Factory = {
 
 const TOKEN = {
   NEWLINE: '<NL>',
+  SINGLE_QUOTE: "'",
+  DOUBLE_QUOTE: '"',
 };
 
 const TOKEN_TYPE = {
@@ -41,7 +43,8 @@ const TOKEN_TYPE = {
   RBRACKET: 'RBRACKET',
   EQUALS: 'EQUALS',
   COMMA: 'COMMA',
-  DQUOTE: 'DQUOTE',
+  DOUBLE_QUOTE: 'DOUBLE_QUOTE',
+  SINGLE_QUOTE: 'SINGLE_QUOTE',
 };
 
 class Lexer {
@@ -70,6 +73,11 @@ class Lexer {
     $: TOKEN_TYPE.MACRO_REFERENCE,
     '&': TOKEN_TYPE.DOCUMENT_REFERENCE,
     '@': TOKEN_TYPE.SPECIAL_ATTRIBUTE,
+  };
+
+  QUOTE = {
+    [TOKEN.SINGLE_QUOTE]: TOKEN_TYPE.SINGLE_QUOTE,
+    [TOKEN.DOUBLE_QUOTE]: TOKEN_TYPE.DOUBLE_QUOTE,
   };
 
   /** @param {any} val */
@@ -156,7 +164,7 @@ class Lexer {
       }
 
       if (this.isDefined(this.SIGIL[peek()])) {
-        const SIGIL_VALUE = peek();
+        const SIGIL_TYPE = peek();
         flushPendingContent();
         resetPendingContent();
         const sigilStart = i;
@@ -173,7 +181,7 @@ class Lexer {
             Factory.Token(
               input.slice(sigilStart, i),
               line,
-              this.SIGIL[SIGIL_VALUE],
+              this.SIGIL[SIGIL_TYPE],
             ),
           );
           resetPendingContent();
@@ -226,9 +234,21 @@ class Lexer {
 
       if (peek() === '\\') {
         flushPendingContent();
+        const backslashStart = i;
         ++i;
-        // Ignore the newline token
-        consumeNewlineAdvanceLine();
+        if (this.REGEX.NEWLINE.test(peek())) {
+          // Ignore the newline token
+          consumeNewlineAdvanceLine();
+          resetPendingContent();
+          continue;
+        }
+        tokens.push(
+          Factory.Token(
+            input.slice(backslashStart, i),
+            line,
+            TOKEN_TYPE.IDENTIFIER,
+          ),
+        );
         resetPendingContent();
         continue;
       }
@@ -266,19 +286,39 @@ class Lexer {
         continue;
       }
 
-      // todo: handle single quotes
-      if (peek() === '"') {
+      if (this.isDefined(this.QUOTE[peek()])) {
+        // Preserve opening quote
+        const QUOTE_VALUE = peek();
+        const QUOTE_TYPE = this.QUOTE[peek()];
+        const QUOTE_LINE = line;
+
         flushPendingContent();
-        tokens.push(Factory.Token(peek(), line, TOKEN_TYPE.DQUOTE));
+        tokens.push(Factory.Token(peek(), line, QUOTE_TYPE));
         // this is a start of a quoted string
         ++i;
         let quoteStart = i;
         // collect quoted string
         while (i < inputLength) {
+          if (peek() === '\n') {
+            ++i;
+            ++line;
+            continue;
+          }
+
+          if (peek() === '\r') {
+            ++i;
+            ++line;
+            if (peek() === '\n') {
+              ++i;
+              continue;
+            }
+            continue;
+          }
+
           // ending or escaping quote
-          if (input.charAt(i) === '"') {
+          if (input.charAt(i) === QUOTE_VALUE) {
             // if escaped quote
-            if (peek(1) === '"') {
+            if (peek(1) === QUOTE_VALUE) {
               // eat both quotes
               ++i;
               ++i;
@@ -299,7 +339,7 @@ class Lexer {
                 tokens.push(
                   Factory.Token(
                     input.slice(quoteStart, macroStart),
-                    line,
+                    QUOTE_LINE,
                     TOKEN_TYPE.IDENTIFIER,
                   ),
                 );
@@ -318,25 +358,29 @@ class Lexer {
               tokens.push(
                 Factory.Token(
                   input.slice(macroStart, i),
-                  line,
+                  QUOTE_LINE,
                   TOKEN_TYPE.MACRO_REFERENCE,
                 ),
               );
               quoteStart = i;
+              continue;
             }
+            continue;
           }
 
           ++i;
         }
 
-        tokens.push(
-          Factory.Token(
-            input.slice(quoteStart, i),
-            line,
-            TOKEN_TYPE.IDENTIFIER,
-          ),
-        );
-        tokens.push(Factory.Token(peek(), line, TOKEN_TYPE.DQUOTE));
+        if (quoteStart < i) {
+          tokens.push(
+            Factory.Token(
+              input.slice(quoteStart, i),
+              QUOTE_LINE,
+              TOKEN_TYPE.IDENTIFIER,
+            ),
+          );
+        }
+        tokens.push(Factory.Token(peek(), QUOTE_LINE, QUOTE_TYPE));
         ++i;
         resetPendingContent();
         continue;
